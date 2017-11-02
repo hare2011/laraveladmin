@@ -1,6 +1,6 @@
 {
     "name": "encore/laravel-admin",
-    "description": "laravel admin",
+    "description": "the larave admin edit by hare .",
     "type": "library",
     "keywords": ["laravel", "admin", "grid", "chart", "form"],
     "homepage": "https://github.com/z-song/laravel-admin",
