@@ -11,12 +11,10 @@ use Illuminate\Support\Facades\Validator;
 
 /**
  * Class Field.
- *
- * @method Field default($value) set field default value
  */
 class Field implements Renderable
 {
-    const FILE_DELETE_FLAG = '_file_del_';
+    const FILE_DELETE_FLAG = '_file_del_'; 
 
     /**
      * Element id.
@@ -56,7 +54,7 @@ class Field implements Renderable
     /**
      * Column name.
      *
-     * @var string
+     * @var string|array
      */
     protected $column = '';
 
@@ -91,9 +89,21 @@ class Field implements Renderable
     /**
      * Validation rules.
      *
-     * @var string
+     * @var string|\Closure
      */
     protected $rules = '';
+
+    /**
+     * @var callable
+     */
+    protected $validator;
+
+    /**
+     * Validation messages.
+     *
+     * @var array
+     */
+    protected $validationMessages = [];
 
     /**
      * Css required by this field.
@@ -167,6 +177,13 @@ class Field implements Renderable
         'label' => 2,
         'field' => 8,
     ];
+
+    /**
+     * If the form horizontal layout.
+     *
+     * @var bool
+     */
+    protected $horizontal = true;
 
     /**
      * Field constructor.
@@ -370,19 +387,24 @@ class Field implements Renderable
     /**
      * Get or set rules.
      *
-     * @param null $rules
+     * @param null  $rules
+     * @param array $messages
      *
-     * @return mixed
+     * @return $this
      */
-    public function rules($rules = null)
+    public function rules($rules = null, $messages = [])
     {
-        if (is_null($rules)) {
-            return $this->rules;
+        if ($rules instanceof \Closure) {
+            $this->rules = $rules;
         }
 
-        $rules = array_filter(explode('|', "{$this->rules}|$rules"));
+        if (is_string($rules)) {
+            $rules = array_filter(explode('|', "{$this->rules}|$rules"));
 
-        $this->rules = implode('|', $rules);
+            $this->rules = implode('|', $rules);
+        }
+
+        $this->validationMessages = $messages;
 
         return $this;
     }
@@ -394,6 +416,10 @@ class Field implements Renderable
      */
     protected function getRules()
     {
+        if ($this->rules instanceof \Closure) {
+            return $this->rules->call($this, $this->form);
+        }
+
         return $this->rules;
     }
 
@@ -407,6 +433,20 @@ class Field implements Renderable
     protected function removeRule($rule)
     {
         $this->rules = str_replace($rule, '', $this->rules);
+    }
+
+    /**
+     * Set field validator.
+     *
+     * @param callable $validator
+     *
+     * @return $this
+     */
+    public function validator(callable $validator)
+    {
+        $this->validator = $validator;
+
+        return $this;
     }
 
     /**
@@ -458,7 +498,7 @@ class Field implements Renderable
      *
      * @return $this
      */
-    public function setDefault($default)
+    public function default($default)
     {
         $this->default = $default;
 
@@ -497,7 +537,7 @@ class Field implements Renderable
     /**
      * Get column of the field.
      *
-     * @return string
+     * @return string|array
      */
     public function column()
     {
@@ -533,6 +573,10 @@ class Field implements Renderable
      */
     public function getValidator(array $input)
     {
+        if ($this->validator) {
+            return $this->validator->call($this, $input);
+        }
+
         $rules = $attributes = [];
 
         if (!$fieldRules = $this->getRules()) {
@@ -561,7 +605,7 @@ class Field implements Renderable
             }
         }
 
-        return Validator::make($input, $rules, [], $attributes);
+        return Validator::make($input, $rules, $this->validationMessages, $attributes);
     }
 
     /**
@@ -635,6 +679,7 @@ class Field implements Renderable
         return $this->placeholder ?: trans('admin::lang.input').' '.$this->label;
     }
 
+
     /**
      * Format the field attributes.
      *
@@ -649,6 +694,32 @@ class Field implements Renderable
         }
 
         return implode(' ', $html);
+    }
+
+    /**
+     * @return $this
+     */
+    public function disableHorizontal()
+    {
+        $this->horizontal = false;
+
+        return $this;
+    }
+
+    /**
+     * @return array
+     */
+    public function getViewElementClasses()
+    {
+        if ($this->horizontal) {
+            return [
+                'label'      => "col-sm-{$this->width['label']}",
+                'field'      => "col-sm-{$this->width['field']}",
+                'form-group' => 'form-group ',
+            ];
+        }
+
+        return ['label' =>'', 'field' => '', 'form-group' => ''];
     }
 
     /**

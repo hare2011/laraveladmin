@@ -61,6 +61,10 @@ class File extends Field
             return false;
         }
 
+        if ($this->validator) {
+            return $this->validator->call($this, $input);
+        }
+
         /*
          * If has original value, means the form is in edit mode,
          * then remove required rule from rules.
@@ -85,7 +89,7 @@ class File extends Field
         $rules[$this->column] = $fieldRules;
         $attributes[$this->column] = $this->label;
 
-        return Validator::make($input, $rules, [], $attributes);
+        return Validator::make($input, $rules, $this->validationMessages, $attributes);
     }
 
     /**
@@ -117,13 +121,11 @@ class File extends Field
     {
         $this->renameIfExists($file);
 
-        $target = $this->getDirectory().'/'.$this->name;
-
-        $this->storage->put($target, file_get_contents($file->getRealPath()));
+        $path = $this->storage->putFileAs($this->getDirectory(), $file, $this->name);
 
         $this->destroy();
 
-        return $target;
+        return $path;
     }
 
     /**
@@ -169,6 +171,7 @@ class File extends Field
 
         if (!empty($this->value)) {
             $this->attribute('data-initial-preview', $this->preview());
+            $this->attribute('data-initial-caption', $this->initialCaption($this->value));
 
             $this->setupPreviewOptions();
         }
