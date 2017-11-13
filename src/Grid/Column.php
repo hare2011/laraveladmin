@@ -601,7 +601,7 @@ class Column
         if(!property_exists($model,$convert_property)){
             throw new Exception(get_class($model).'类属性'.$convert_property.'不存在');
         }
-        $property = $model->$convert_property;
+        $property = $model::$$convert_property;
         return $this->display(function ($value) use ($property) {
                 if(array_key_exists($value,$property)){
                     return $property[$value];
