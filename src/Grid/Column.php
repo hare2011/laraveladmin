@@ -9,6 +9,7 @@ use Illuminate\Contracts\Support\Arrayable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Str;
+use Exception;
 
 class Column
 {
@@ -583,5 +584,30 @@ class Column
         }
 
         return $this->resolveDisplayer($method, $arguments);
+    }
+    
+   /**
+     *
+     * set the Model value convert.
+     * Model and Property_convert
+     *
+     * @return Closure
+     */ 
+    
+    function convert()
+    {
+        $model = self::$model;
+        $convert_property= $this->name.'_convert';
+        if(!property_exists($model,$convert_property)){
+            throw new Exception(get_class($model).'类属性'.$convert_property.'不存在');
+        }
+        $property = $model->$convert_property;
+        return $this->display(function ($value) use ($property) {
+                if(in_array($value,$property)){
+                    return $property[$value];
+                }else{
+                    return $value;
+                }
+        });
     }
 }
