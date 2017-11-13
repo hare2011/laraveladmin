@@ -603,7 +603,7 @@ class Column
         }
         $property = $model->$convert_property;
         return $this->display(function ($value) use ($property) {
-                if(in_array($value,$property)){
+                if(array_key_exists($value,$property)){
                     return $property[$value];
                 }else{
                     return $value;
