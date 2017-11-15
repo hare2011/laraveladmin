@@ -592,7 +592,8 @@ class Field implements Renderable
 
             
             $eloquentModel = $this->form->model();
-            if($primaryValue = $eloquentModel->getKey() && preg_match('/unique[^|]+/', $fieldRules, $attributes))
+            $primaryValue = $eloquentModel->getKey();
+            if($primaryValue && preg_match('/unique[^|]+/', $fieldRules, $attributes))
             {
                 $uniqueRule=current($attributes);
                 $explodeUR = explode(',',$uniqueRule);
@@ -613,6 +614,7 @@ class Field implements Renderable
                 $attributes[$column.$key] = $this->label."[$column]";
             }
         }
+
         return Validator::make($input, $rules, $this->validationMessages, $attributes);
     }
 
