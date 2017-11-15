@@ -590,6 +590,15 @@ class Field implements Renderable
 
             $input = $this->sanitizeInput($input, $this->column);
 
+            
+            $eloquentModel = $this->form->model();
+            if($primaryValue = $eloquentModel->getKey() && preg_match('/unique[^|]+/', $fieldRules, $attributes))
+            {
+                $uniqueRule=current($attributes);
+                $explodeUR = explode(',',$uniqueRule);
+                $fieldRules = $explodeUR[0].','.$this->column.','.$primaryValue.','.$eloquentModel->getKeyName();
+            }
+            
             $rules[$this->column] = $fieldRules;
             $attributes[$this->column] = $this->label;
         }
@@ -604,7 +613,6 @@ class Field implements Renderable
                 $attributes[$column.$key] = $this->label."[$column]";
             }
         }
-
         return Validator::make($input, $rules, $this->validationMessages, $attributes);
     }
 

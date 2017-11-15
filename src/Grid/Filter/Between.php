@@ -12,6 +12,13 @@ class Between extends AbstractFilter
     protected $view = null;
 
     /**
+     *  set datetime is stamp
+     */
+    
+    protected  $timestamp = false;
+
+
+    /**
      * Format id.
      *
      * @param string $column
@@ -71,6 +78,9 @@ class Between extends AbstractFilter
         if (empty($value)) {
             return;
         }
+        if($this->timestamp) {
+            $value = $this->setTimeStamp($value);
+        }
 
         if (!isset($value['start'])) {
             return $this->buildCondition($this->column, '<=', $value['end']);
@@ -82,14 +92,14 @@ class Between extends AbstractFilter
 
         $this->query = 'whereBetween';
 
-        return $this->buildCondition($this->column, $this->value);
+        return $this->buildCondition($this->column, $value);
     }
 
     public function datetime($options = [])
     {
-        $this->view = 'admin::filter.betweenDatetime';
-
+        $this->view = 'admin::filter.betweenDatetime';       
         $this->prepareForDatetime($options);
+        return $this;
     }
 
     protected function prepareForDatetime($options = [])
@@ -121,5 +131,21 @@ EOT;
         }
 
         return parent::render();
+    }
+    
+    
+    protected  function setTimeStamp($value)
+    {
+        foreach($value as &$v){
+            if(!preg_match('/^[0-9]+$/',$v)){
+                $v = strtotime($v);
+            }
+        }
+        return $value;
+    }
+    
+    public function stamp()
+    {
+        $this->timestamp = true;
     }
 }

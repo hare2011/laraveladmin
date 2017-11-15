@@ -506,7 +506,8 @@ class Form
 
         /* @var Model $this->model */
         $this->model = $this->model->with($this->getRelations())->findOrFail($id);
-
+         
+        $this->builder()->setMode('edit');
         $this->setFieldOriginalValue();
 
         // Handle validation errors.
