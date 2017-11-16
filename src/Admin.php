@@ -191,6 +191,17 @@ class Admin
 
         return "/$prefix/".trim($url, '/');
     }
+    
+    /**
+     * get grid current session
+     * @return  string url
+     */
+    
+    public static function getGridCurrentUrl()
+    {
+        return session('grid_current_url',null);
+        
+    }
 
     /**
      * Left sider-bar menu.

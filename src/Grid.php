@@ -219,6 +219,16 @@ class Grid
             (new Exporter($this))->resolve($this->exporter)->export();
         }
     }
+    
+    /**
+     * save current session
+     * 
+     */
+    
+    protected function saveCurrentUrl()
+    {
+        session(['grid_current_url'=> preg_replace('/_pjax[^&]+container&/','',app('request')->getUri())]);
+    }
 
     /**
      * Get or set option for grid.
@@ -964,6 +974,7 @@ class Grid
     {
         try {
             $this->build();
+            $this->saveCurrentUrl();
         } catch (\Exception $e) {
             return Handle::renderException($e);
         }
