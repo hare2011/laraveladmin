@@ -610,4 +610,20 @@ class Column
                 }
         });
     }
+    
+    /**
+     *  convert the value into datetime
+     * @return date
+     */
+    
+    function datetime()
+    {
+        return $this->display(function ($value)  {
+              if(!empty($value) && preg_match('/^[0-9]+$/',$value))
+              {
+                  return date('Y-m-d H:i:s',$value);
+              }
+              return '';
+        });
+    }
 }
