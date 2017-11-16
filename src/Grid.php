@@ -227,7 +227,7 @@ class Grid
     
     protected function saveCurrentUrl()
     {
-        session(['grid_current_url'=> preg_replace('/_pjax[^&]+container&/','',app('request')->getUri())]);
+        session(['grid_current_url'=> preg_replace('/_pjax[^&]+container&?/','',app('request')->getUri())]);
     }
 
     /**

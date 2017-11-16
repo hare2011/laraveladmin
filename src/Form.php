@@ -354,9 +354,11 @@ class Form
     protected function redirectAfterStore()
     {
         admin_toastr(trans('admin::lang.save_succeeded'));
-
-        $url = Input::get(Builder::PREVIOUS_URL_KEY) ?: $this->resource(0);
-
+      
+        $url = Admin::getGridCurrentUrl();
+        if(is_null($url)){
+            $url = Input::get(Builder::PREVIOUS_URL_KEY) ?: $this->resource(0);
+        }
         return redirect($url);
     }
 
@@ -552,7 +554,10 @@ class Form
     {
         admin_toastr(trans('admin::lang.update_succeeded'));
 
-        $url = Input::get(Builder::PREVIOUS_URL_KEY) ?: $this->resource(-1);
+        $url = Admin::getGridCurrentUrl();
+        if(is_null($url)){
+            $url = Input::get(Builder::PREVIOUS_URL_KEY) ?: $this->resource(-1);
+        }
 
         return redirect($url);
     }
