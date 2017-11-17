@@ -8,6 +8,7 @@ use Encore\Admin\Form\Builder;
 use Encore\Admin\Form\Field;
 use Encore\Admin\Form\Field\File;
 use Encore\Admin\Form\Tab;
+use Encore\Admin\Event\DeleteEvent;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Http\Request;
@@ -279,8 +280,13 @@ class Form
             if (empty($id)) {
                 continue;
             }
-            $this->deleteFilesAndImages($id);
-            $this->model->find($id)->delete();
+            if(property_exists($this->model,'softDelete') && is_string($this->model->softDelete)){
+                $this->model->where($this->model->getKeyName(),'=',$id)->update([$this->model->softDelete=>0]);
+            }else{
+                $this->deleteFilesAndImages($id);
+                $this->model->find($id)->delete();
+            }
+            event(new DeleteEvent($this->model));
         }
 
         return true;

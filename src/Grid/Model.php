@@ -470,4 +470,12 @@ class Model
             return $data[$key];
         }
     }
+    
+    /**
+     * return Eloquent model
+     */
+    function model()
+    {
+        return $this->model;
+    }
 }

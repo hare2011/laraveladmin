@@ -778,6 +778,15 @@ class Grid
 
         $this->dbColumns = collect(Schema::connection($connection)->getColumnListing($this->model()->getTable()));
     }
+    
+    /**
+     * soft delete filter
+     */
+    protected function excludeSoftDeleteRow(){
+        if(property_exists($this->model()->model(),'softDelete')){
+            $this->model()->where($this->model()->model()->softDelete,'!=',0);
+        }
+    }
 
     /**
      * Handle table column for grid.
@@ -973,8 +982,9 @@ class Grid
     public function render()
     {
         try {
+            $this->excludeSoftDeleteRow();
             $this->build();
-            $this->saveCurrentUrl();
+            $this->saveCurrentUrl();           
         } catch (\Exception $e) {
             return Handle::renderException($e);
         }
