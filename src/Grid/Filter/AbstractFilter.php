@@ -7,8 +7,8 @@ use Encore\Admin\Grid\Filter\Field\DateTime;
 use Encore\Admin\Grid\Filter\Field\Select;
 use Encore\Admin\Grid\Filter\Field\Text;
 
-abstract class AbstractFilter
-{
+abstract class AbstractFilter {
+
     /**
      * Element id.
      *
@@ -51,6 +51,8 @@ abstract class AbstractFilter
      * @var Filter
      */
     protected $parent;
+    protected $display = '';
+    protected $labelShow = true;
 
     /**
      * AbstractFilter constructor.
@@ -58,8 +60,7 @@ abstract class AbstractFilter
      * @param $column
      * @param string $label
      */
-    public function __construct($column, $label = '')
-    {
+    public function __construct($column, $label = '') {
         $this->column = $column;
         $this->label = $this->formatLabel($label);
         $this->id = $this->formatId($column);
@@ -72,8 +73,7 @@ abstract class AbstractFilter
      *
      * @return void
      */
-    public function setupField()
-    {
+    public function setupField() {
         $this->field = new Text();
         $this->field->setPlaceholder($this->label);
     }
@@ -85,8 +85,7 @@ abstract class AbstractFilter
      *
      * @return string
      */
-    protected function formatLabel($label)
-    {
+    protected function formatLabel($label) {
         $label = $label ?: ucfirst($this->column);
 
         return str_replace(['.', '_'], ' ', $label);
@@ -99,8 +98,7 @@ abstract class AbstractFilter
      *
      * @return string
      */
-    protected function formatName($column)
-    {
+    protected function formatName($column) {
         $columns = explode('.', $column);
 
         if (count($columns) == 1) {
@@ -122,16 +120,14 @@ abstract class AbstractFilter
      *
      * @return array|string
      */
-    public function formatId($columns)
-    {
+    public function formatId($columns) {
         return str_replace('.', '_', $columns);
     }
 
     /**
      * @param Filter $filter
      */
-    public function setParent(Filter $filter)
-    {
+    public function setParent(Filter $filter) {
         $this->parent = $filter;
     }
 
@@ -142,8 +138,7 @@ abstract class AbstractFilter
      *
      * @return AbstractFilter[]|mixed
      */
-    public function siblings($index = null)
-    {
+    public function siblings($index = null) {
         if (!is_null($index)) {
             return array_get($this->parent->filters(), $index);
         }
@@ -158,10 +153,9 @@ abstract class AbstractFilter
      *
      * @return AbstractFilter[]|mixed
      */
-    public function previous($step = 1)
-    {
+    public function previous($step = 1) {
         return $this->siblings(
-            array_search($this, $this->parent->filters()) - $step
+                        array_search($this, $this->parent->filters()) - $step
         );
     }
 
@@ -172,10 +166,9 @@ abstract class AbstractFilter
      *
      * @return AbstractFilter[]|mixed
      */
-    public function next($step = 1)
-    {
+    public function next($step = 1) {
         return $this->siblings(
-            array_search($this, $this->parent->filters()) + $step
+                        array_search($this, $this->parent->filters()) + $step
         );
     }
 
@@ -186,8 +179,7 @@ abstract class AbstractFilter
      *
      * @return array|mixed|null
      */
-    public function condition($inputs)
-    {
+    public function condition($inputs) {
         $value = array_get($inputs, $this->column);
 
         if (!isset($value)) {
@@ -206,8 +198,7 @@ abstract class AbstractFilter
      *
      * @return $this
      */
-    public function select($options = [])
-    {
+    public function select($options = []) {
         $select = new Select($options);
 
         $select->setParent($this);
@@ -222,8 +213,7 @@ abstract class AbstractFilter
      *
      * @return mixed
      */
-    public function datetime($options = [])
-    {
+    public function datetime($options = []) {
         return $this->setField(new DateTime($this, $options));
     }
 
@@ -232,8 +222,7 @@ abstract class AbstractFilter
      *
      * @param $field
      */
-    protected function setField($field)
-    {
+    protected function setField($field) {
         return $this->field = $field;
     }
 
@@ -242,8 +231,7 @@ abstract class AbstractFilter
      *
      * @return mixed
      */
-    public function field()
-    {
+    public function field() {
         return $this->field;
     }
 
@@ -252,8 +240,7 @@ abstract class AbstractFilter
      *
      * @return array|string
      */
-    public function getId()
-    {
+    public function getId() {
         return $this->id;
     }
 
@@ -262,8 +249,7 @@ abstract class AbstractFilter
      *
      * @return string
      */
-    public function getColumn()
-    {
+    public function getColumn() {
         return $this->column;
     }
 
@@ -272,9 +258,24 @@ abstract class AbstractFilter
      *
      * @return array|string
      */
-    public function getValue()
-    {
+    public function getValue() {
         return $this->value;
+    }
+
+    public function visibility($bool = true) {
+        if ($bool) {
+            $this->display = '';
+        } else {
+            $this->display = 'style="display:none;"';
+        }
+    }
+
+    public function labelVisibility($bool = true) {
+        if($bool){
+            $this->labelShow = true;
+        }else{
+            $this->labelShow = false;
+        }
     }
 
     /**
@@ -282,8 +283,11 @@ abstract class AbstractFilter
      *
      * @return array|mixed
      */
-    protected function buildCondition()
-    {
+    protected function buildCondition() {
+        if (is_null($this->parent->hasValueFilter)) {
+            $this->parent->hasValueFilter = $this;
+        }
+
         $column = explode('.', $this->column);
 
         if (count($column) == 1) {
@@ -298,22 +302,20 @@ abstract class AbstractFilter
      *
      * @return array
      */
-    protected function buildRelationCondition()
-    {
+    protected function buildRelationCondition() {
         $args = func_get_args();
 
         list($relation, $args[0]) = explode('.', $this->column);
 
         return ['whereHas' => [$relation, function ($relation) use ($args) {
-            call_user_func_array([$relation, $this->query], $args);
-        }]];
+                    call_user_func_array([$relation, $this->query], $args);
+                }]];
     }
 
     /**
      * @return array
      */
-    protected function fieldVars()
-    {
+    protected function fieldVars() {
         if (method_exists($this->field(), 'variables')) {
             return $this->field()->variables();
         }
@@ -321,19 +323,32 @@ abstract class AbstractFilter
         return [];
     }
 
+    public function getLabel() {
+        return $this->label;
+    }
+
+    public function getName() {
+        $name = $this->formatName($this->column);
+        if (is_array($name)) {
+            return implode('_', $name);
+        }
+        return $name;
+    }
+
     /**
      * Variables for filter view.
      *
      * @return array
      */
-    protected function variables()
-    {
+    protected function variables() {
         $variables = [
-            'id'    => $this->id,
-            'name'  => $this->formatName($this->column),
+            'id' => $this->id,
+            'name' => $this->formatName($this->column),
             'label' => $this->label,
             'value' => $this->value,
             'field' => $this->field(),
+            'display' => $this->display,
+            'labelShow' => $this->labelShow
         ];
 
         return array_merge($variables, $this->fieldVars());
@@ -344,19 +359,16 @@ abstract class AbstractFilter
      *
      * @return \Illuminate\View\View|string
      */
-    public function render()
-    {
+    public function render() {
         $class = explode('\\', get_called_class());
-        $view = 'admin::filter.'.strtolower(end($class));
-
+        $view = 'admin::filter.' . strtolower(end($class));
         return view($view, $this->variables());
     }
 
     /**
      * @return \Illuminate\View\View|string
      */
-    public function __toString()
-    {
+    public function __toString() {
         return $this->render();
     }
 
@@ -368,12 +380,12 @@ abstract class AbstractFilter
      *
      * @return mixed
      */
-    public function __call($method, $params)
-    {
+    public function __call($method, $params) {
         if (method_exists($this->field, $method)) {
             return call_user_func_array([$this->field, $method], $params);
         }
 
-        throw new \Exception('Method "'.$method.'" not exists.');
+        throw new \Exception('Method "' . $method . '" not exists.');
     }
+
 }

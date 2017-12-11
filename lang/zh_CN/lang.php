@@ -29,7 +29,7 @@ return [
     'order'        => '排序',
     'expand'       => '展开',
     'collapse'     => '收起',
-    'filter'       => '筛选',
+    'filter'       => '高级筛选',
     'close'        => '关闭',
     'show'         => '显示',
     'entries'      => '条',

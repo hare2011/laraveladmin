@@ -1,38 +1,18 @@
 laravel-admin
-=====
 
-[![Build Status](https://travis-ci.org/z-song/laravel-admin.svg?branch=master)](https://travis-ci.org/z-song/laravel-admin)
-[![StyleCI](https://styleci.io/repos/48796179/shield)](https://styleci.io/repos/48796179)
-[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/z-song/laravel-admin/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/z-song/laravel-admin/?branch=master)
-[![Packagist](https://img.shields.io/packagist/l/encore/laravel-admin.svg?maxAge=2592000)](https://packagist.org/packages/encore/laravel-admin)
-[![Total Downloads](https://img.shields.io/packagist/dt/encore/laravel-admin.svg?style=flat-square)](https://packagist.org/packages/encore/laravel-admin)
+laravel-admin 是一个可以快速帮你构建后台管理的工具，它提供的页面组件和表单元素等功能，能帮助你使用很少的代码就实现功能完善的后台管理功能。
 
-`laravel-admin` 是一个可以快速帮你构建后台管理的工具，它提供的页面组件和表单元素等功能，能帮助你使用很少的代码就实现功能完善的后台管理功能。
-
-[Demo](http://120.26.143.106/admin) 账号/密码:admin/admin
-
-Inspired by [SleepingOwlAdmin](https://github.com/sleeping-owl/admin) and [rapyd-laravel](https://github.com/zofe/rapyd-laravel).
-
-截图
-------------
-
-![laravel-admin](https://cloud.githubusercontent.com/assets/1479100/19625297/3b3deb64-9947-11e6-807c-cffa999004be.jpg)
 
 安装
 ------------
 
 首先确保安装好了`laravel`，并且数据库连接设置正确。
 
-```
-Laravel 5.2
-composer require encore/laravel-admin "dev-master"
 
-Laravel 5.3
-composer require encore/laravel-admin "1.3.x-dev"
+Laravel 5.4.*
+composer require encore/laravel-admin "dev-dev-1.4"
 
-Laravel 5.1
-composer require encore/laravel-admin "1.1.x-dev"
-```
+
 
 在`config/app.php`加入`ServiceProvider`:
 

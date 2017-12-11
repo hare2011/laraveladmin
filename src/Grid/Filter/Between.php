@@ -28,7 +28,7 @@ class Between extends AbstractFilter
     public function formatId($column)
     {
         $id = str_replace('.', '_', $column);
-
+        $id .=str_random(6);
         return ['start' => "{$id}_start", 'end' => "{$id}_end"];
     }
 
@@ -71,9 +71,7 @@ class Between extends AbstractFilter
 
         $this->value = array_get($inputs, $this->column);
 
-        $value = array_filter($this->value, function ($val) {
-            return $val !== '';
-        });
+        $value = array_filter($this->value);
 
         if (empty($value)) {
             return;
@@ -98,7 +96,6 @@ class Between extends AbstractFilter
     public function datetime($options = [])
     {
         $this->view = 'admin::filter.betweenDatetime';       
-        $this->prepareForDatetime($options);
         return $this;
     }
 
@@ -127,6 +124,8 @@ EOT;
     public function render()
     {
         if (isset($this->view)) {
+            $this->id = $this->formatId($this->column);
+            $this->prepareForDatetime();
             return view($this->view, $this->variables());
         }
 

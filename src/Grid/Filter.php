@@ -49,7 +49,7 @@ class Filter
      * @var bool
      */
     protected $useIdFilter = true;
-
+    
     /**
      * Action of search form.
      *
@@ -61,6 +61,12 @@ class Filter
      * @var string
      */
     protected $view = 'admin::grid.filter';
+    
+    /**
+     * has value filter
+     * 
+     */
+    public $hasValueFilter = null;
 
     /**
      * Create a new filter instance.
@@ -80,6 +86,14 @@ class Filter
     public function useModal()
     {
         $this->useModal = true;
+    }
+    
+    /**
+     * 
+     */
+    public function getModal()
+    {
+        return $this->useModal;
     }
 
     /**
@@ -121,6 +135,8 @@ class Filter
      */
     public function conditions()
     {
+        $this->removeIDFilterIfNeeded();
+        
         $inputs = array_dot(Input::all());
 
         $inputs = array_filter($inputs, function ($input) {
@@ -139,7 +155,7 @@ class Filter
 
         $conditions = [];
 
-        $this->removeIDFilterIfNeeded();
+        
 
         foreach ($this->filters() as $filter) {
             $conditions[] = $filter->condition($params);
@@ -171,6 +187,7 @@ class Filter
     {
         return $this->filters;
     }
+    
 
     /**
      * Execute the filter with conditions.
@@ -189,10 +206,15 @@ class Filter
      */
     public function render()
     {
-        $this->removeIDFilterIfNeeded();
 
         if (empty($this->filters)) {
             return '';
+        }
+        
+        if(!is_null($this->hasValueFilter)){
+            $index = array_search($this->hasValueFilter,$this->filters);
+            unset($this->filters[$index]);
+            array_unshift($this->filters,$this->hasValueFilter);
         }
 
         if ($this->useModal) {
@@ -200,11 +222,27 @@ class Filter
 
             $script = <<<'EOT'
 
-$("#filter-modal .submit").click(function () {
-    $("#filter-modal").modal('toggle');
-    $('body').removeClass('modal-open');
-    $('.modal-backdrop').remove();
-});
+        $("#filter-modal .submit").click(function () {
+            $("#filter-modal").modal('toggle');
+            $('body').removeClass('modal-open');
+            $('.modal-backdrop').remove();
+        });
+  
+        $('.filterInputChoice').click(function(){
+           obj = $(this);
+           var name = obj.parent().attr('name');
+           var placeholder = obj.html();
+           var old_name = $('#filterColumn').attr('name');
+
+           $('#filterColumn').attr('name',name);
+           $('#filterColumn').html(placeholder);
+
+           obj.parent().hide();
+           $("li[name='"+old_name+"']").show();   
+
+           $('#inputbox').append($('.collectplace').find("div[name='"+old_name+"']").hide()); 
+           $('.collectplace').append($('#inputbox').find("div[name='"+name+"']").show()) 
+})
 
 EOT;
             Admin::script($script);
