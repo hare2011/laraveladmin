@@ -7,7 +7,7 @@ Hare-laravel-admin
 [![Packagist](https://img.shields.io/packagist/l/encore/laravel-admin.svg?maxAge=2592000)](https://packagist.org/packages/encore/laravel-admin)
 [![Total Downloads](https://img.shields.io/packagist/dt/encore/laravel-admin.svg?style=flat-square)](https://packagist.org/packages/encore/laravel-admin)
 
-`laravel-admin` is administrative interface builder for laravel which can help you build CRUD backends just with few lines of code.
+`Hare - laravel-admin` is administrative interface builder for laravel which can help you build CRUD backends just with few lines of code.
 
 [Demo](http://120.26.143.106/admin) use `username/password:admin/admin`
 
