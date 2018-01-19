@@ -1,9 +1,9 @@
 <?php
 
-namespace Encore\Admin\Form;
+namespace Runhare\Admin\Form;
 
-use Encore\Admin\Facades\Admin;
-use Encore\Admin\Form;
+use Runhare\Admin\Facades\Admin;
+use Runhare\Admin\Form;
 use Illuminate\Contracts\Support\Htmlable;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Support\Collection;

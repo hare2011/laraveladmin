@@ -1,6 +1,6 @@
 <?php
 
-namespace Encore\Admin\Grid;
+namespace Runhare\Admin\Grid;
 
 class Row
 {

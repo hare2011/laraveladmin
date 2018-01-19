@@ -1,8 +1,8 @@
 <?php
 
-namespace Encore\Admin\Grid\Displayers;
+namespace Runhare\Admin\Grid\Displayers;
 
-use Encore\Admin\Admin;
+use Runhare\Admin\Admin;
 
 class RowSelector extends AbstractDisplayer
 {

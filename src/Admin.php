@@ -1,11 +1,11 @@
 <?php
 
-namespace Encore\Admin;
+namespace Runhare\Admin;
 
 use Closure;
-use Encore\Admin\Auth\Database\Menu;
-use Encore\Admin\Layout\Content;
-use Encore\Admin\Widgets\Navbar;
+use Runhare\Admin\Auth\Database\Menu;
+use Runhare\Admin\Layout\Content;
+use Runhare\Admin\Widgets\Navbar;
 use Illuminate\Database\Eloquent\Model as EloquentModel;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Config;
@@ -41,7 +41,7 @@ class Admin
      * @param $model
      * @param Closure $callable
      *
-     * @return \Encore\Admin\Grid
+     * @return \Runhare\Admin\Grid
      */
     public function grid($model, Closure $callable)
     {
@@ -52,7 +52,7 @@ class Admin
      * @param $model
      * @param Closure $callable
      *
-     * @return \Encore\Admin\Form
+     * @return \Runhare\Admin\Form
      */
     public function form($model, Closure $callable)
     {
@@ -64,7 +64,7 @@ class Admin
      *
      * @param $model
      *
-     * @return \Encore\Admin\Tree
+     * @return \Runhare\Admin\Tree
      */
     public function tree($model, Closure $callable = null)
     {
@@ -74,7 +74,7 @@ class Admin
     /**
      * @param Closure $callable
      *
-     * @return \Encore\Admin\Layout\Content
+     * @return \Runhare\Admin\Layout\Content
      */
     public function content(Closure $callable = null)
     {
@@ -246,7 +246,7 @@ class Admin
     /**
      * Get navbar object.
      *
-     * @return \Encore\Admin\Widgets\Navbar
+     * @return \Runhare\Admin\Widgets\Navbar
      */
     public function getNavbar()
     {
@@ -261,7 +261,7 @@ class Admin
     {
         $attributes = [
             'prefix'     => config('admin.prefix'),
-            'namespace'  => 'Encore\Admin\Controllers',
+            'namespace'  => 'Runhare\Admin\Controllers',
             'middleware' => ['web', 'admin'],
         ];
 
@@ -295,12 +295,12 @@ class Admin
         Route::group($attributes, function ($router) {
 
             /* @var \Illuminate\Routing\Router $router */
-            $router->get('terminal/database', 'Encore\Admin\Controllers\TerminalController@database');
-            $router->post('terminal/database', 'Encore\Admin\Controllers\TerminalController@runDatabase');
-            $router->get('terminal/artisan', 'Encore\Admin\Controllers\TerminalController@artisan');
-            $router->post('terminal/artisan', 'Encore\Admin\Controllers\TerminalController@runArtisan');
-            $router->get('scaffold', 'Encore\Admin\Controllers\ScaffoldController@index');
-            $router->post('scaffold', 'Encore\Admin\Controllers\ScaffoldController@store');
+            $router->get('terminal/database', 'Runhare\Admin\Controllers\TerminalController@database');
+            $router->post('terminal/database', 'Runhare\Admin\Controllers\TerminalController@runDatabase');
+            $router->get('terminal/artisan', 'Runhare\Admin\Controllers\TerminalController@artisan');
+            $router->post('terminal/artisan', 'Runhare\Admin\Controllers\TerminalController@runArtisan');
+            $router->get('scaffold', 'Runhare\Admin\Controllers\ScaffoldController@index');
+            $router->post('scaffold', 'Runhare\Admin\Controllers\ScaffoldController@store');
         });
     }
 }

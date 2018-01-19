@@ -1,9 +1,9 @@
 <?php
 
-namespace Encore\Admin\Controllers;
+namespace Runhare\Admin\Controllers;
 
-use Encore\Admin\Facades\Admin;
-use Encore\Admin\Layout\Content;
+use Runhare\Admin\Facades\Admin;
+use Runhare\Admin\Layout\Content;
 use Exception;
 use Illuminate\Contracts\Support\Arrayable;
 use Illuminate\Routing\Controller;

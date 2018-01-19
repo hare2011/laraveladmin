@@ -1,6 +1,6 @@
 <?php
 
-namespace Encore\Admin\Scaffold;
+namespace Runhare\Admin\Scaffold;
 
 use Illuminate\Database\Migrations\MigrationCreator as BaseMigrationCreator;
 

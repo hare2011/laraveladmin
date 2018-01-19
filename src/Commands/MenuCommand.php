@@ -1,8 +1,8 @@
 <?php
 
-namespace Encore\Admin\Commands;
+namespace Runhare\Admin\Commands;
 
-use Encore\Admin\Facades\Admin;
+use Runhare\Admin\Facades\Admin;
 use Illuminate\Console\Command;
 
 class MenuCommand extends Command

@@ -1,8 +1,8 @@
 <?php
 
-namespace Encore\Admin\Middleware;
+namespace Runhare\Admin\Middleware;
 
-use Encore\Admin\Facades\Admin;
+use Runhare\Admin\Facades\Admin;
 use Illuminate\Http\Request;
 
 class OperationLog
@@ -26,7 +26,7 @@ class OperationLog
                 'input'   => json_encode($request->input()),
             ];
 
-            \Encore\Admin\Auth\Database\OperationLog::create($log);
+            \Runhare\Admin\Auth\Database\OperationLog::create($log);
         }
 
         return $next($request);

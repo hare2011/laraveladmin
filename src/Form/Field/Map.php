@@ -1,8 +1,8 @@
 <?php
 
-namespace Encore\Admin\Form\Field;
+namespace Runhare\Admin\Form\Field;
 
-use Encore\Admin\Form\Field;
+use Runhare\Admin\Form\Field;
 
 class Map extends Field
 {

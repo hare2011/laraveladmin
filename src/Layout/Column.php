@@ -1,6 +1,6 @@
 <?php
 
-namespace Encore\Admin\Layout;
+namespace Runhare\Admin\Layout;
 
 use Illuminate\Contracts\Support\Renderable;
 

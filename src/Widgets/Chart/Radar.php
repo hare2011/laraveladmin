@@ -1,6 +1,6 @@
 <?php
 
-namespace Encore\Admin\Widgets\Chart;
+namespace Runhare\Admin\Widgets\Chart;
 
 class Radar extends Chart
 {

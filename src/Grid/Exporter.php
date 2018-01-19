@@ -1,9 +1,9 @@
 <?php
 
-namespace Encore\Admin\Grid;
+namespace Runhare\Admin\Grid;
 
-use Encore\Admin\Grid;
-use Encore\Admin\Grid\Exporters\CsvExporter;
+use Runhare\Admin\Grid;
+use Runhare\Admin\Grid\Exporters\CsvExporter;
 
 class Exporter
 {

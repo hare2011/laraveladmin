@@ -1,9 +1,9 @@
 <?php
 
-namespace Encore\Admin\Form;
+namespace Runhare\Admin\Form;
 
-use Encore\Admin\Admin;
-use Encore\Admin\Form;
+use Runhare\Admin\Admin;
+use Runhare\Admin\Form;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Str;

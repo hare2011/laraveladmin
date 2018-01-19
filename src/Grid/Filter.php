@@ -1,9 +1,9 @@
 <?php
 
-namespace Encore\Admin\Grid;
+namespace Runhare\Admin\Grid;
 
-use Encore\Admin\Facades\Admin;
-use Encore\Admin\Grid\Filter\AbstractFilter;
+use Runhare\Admin\Facades\Admin;
+use Runhare\Admin\Grid\Filter\AbstractFilter;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Request;
 use ReflectionClass;
@@ -292,7 +292,7 @@ EOT;
     public function __call($method, $arguments)
     {
         if (in_array($method, $this->supports)) {
-            $className = '\\Encore\\Admin\\Grid\\Filter\\'.ucfirst($method);
+            $className = '\\Runhare\\Admin\\Grid\\Filter\\'.ucfirst($method);
             $reflection = new ReflectionClass($className);
 
             return $this->addFilter($reflection->newInstanceArgs($arguments));

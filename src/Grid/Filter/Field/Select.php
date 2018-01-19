@@ -1,9 +1,9 @@
 <?php
 
-namespace Encore\Admin\Grid\Filter\Field;
+namespace Runhare\Admin\Grid\Filter\Field;
 
-use Encore\Admin\Facades\Admin;
-use Encore\Admin\Grid\Filter\AbstractFilter;
+use Runhare\Admin\Facades\Admin;
+use Runhare\Admin\Grid\Filter\AbstractFilter;
 use Illuminate\Contracts\Support\Arrayable;
 
 class Select

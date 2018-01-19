@@ -1,12 +1,12 @@
 <?php
 
-namespace Encore\Admin\Controllers;
+namespace Runhare\Admin\Controllers;
 
-use Encore\Admin\Auth\Database\Administrator;
-use Encore\Admin\Auth\Database\OperationLog;
-use Encore\Admin\Facades\Admin;
-use Encore\Admin\Grid;
-use Encore\Admin\Layout\Content;
+use Runhare\Admin\Auth\Database\Administrator;
+use Runhare\Admin\Auth\Database\OperationLog;
+use Runhare\Admin\Facades\Admin;
+use Runhare\Admin\Grid;
+use Runhare\Admin\Layout\Content;
 use Illuminate\Routing\Controller;
 
 class LogController extends Controller

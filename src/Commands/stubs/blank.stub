@@ -3,7 +3,7 @@
 namespace DummyNamespace;
 
 use App\Http\Controllers\Controller;
-use Encore\Admin\Controllers\ModelForm;
+use Runhare\Admin\Controllers\ModelForm;
 
 class DummyClass extends Controller
 {

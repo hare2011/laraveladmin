@@ -1,6 +1,6 @@
 <?php
 
-namespace Encore\Admin\Scaffold;
+namespace Runhare\Admin\Scaffold;
 
 class ControllerCreator
 {

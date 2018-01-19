@@ -1,10 +1,10 @@
 <?php
 
-namespace Encore\Admin\Traits;
+namespace Runhare\Admin\Traits;
 
-use Encore\Admin\Form;
-use Encore\Admin\Grid;
-use Encore\Admin\Tree;
+use Runhare\Admin\Form;
+use Runhare\Admin\Grid;
+use Runhare\Admin\Tree;
 
 trait AdminBuilder
 {

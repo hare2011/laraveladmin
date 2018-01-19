@@ -1,14 +1,14 @@
 <?php
 
-namespace Encore\Admin;
+namespace Runhare\Admin;
 
 use Closure;
-use Encore\Admin\Exception\Handle;
-use Encore\Admin\Form\Builder;
-use Encore\Admin\Form\Field;
-use Encore\Admin\Form\Field\File;
-use Encore\Admin\Form\Tab;
-use Encore\Admin\Event\DeleteEvent;
+use Runhare\Admin\Exception\Handle;
+use Runhare\Admin\Form\Builder;
+use Runhare\Admin\Form\Field;
+use Runhare\Admin\Form\Field\File;
+use Runhare\Admin\Form\Tab;
+use Runhare\Admin\Event\DeleteEvent;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Http\Request;
@@ -1174,51 +1174,51 @@ class Form
     public static function registerBuiltinFields()
     {
         $map = [
-            'button'         => \Encore\Admin\Form\Field\Button::class,
-            'checkbox'       => \Encore\Admin\Form\Field\Checkbox::class,
-            'color'          => \Encore\Admin\Form\Field\Color::class,
-            'currency'       => \Encore\Admin\Form\Field\Currency::class,
-            'date'           => \Encore\Admin\Form\Field\Date::class,
-            'dateRange'      => \Encore\Admin\Form\Field\DateRange::class,
-            'datetime'       => \Encore\Admin\Form\Field\Datetime::class,
-            'dateTimeRange'  => \Encore\Admin\Form\Field\DatetimeRange::class,
-            'datetimeRange'  => \Encore\Admin\Form\Field\DatetimeRange::class,
-            'decimal'        => \Encore\Admin\Form\Field\Decimal::class,
-            'display'        => \Encore\Admin\Form\Field\Display::class,
-            'divider'        => \Encore\Admin\Form\Field\Divide::class,
-            'divide'         => \Encore\Admin\Form\Field\Divide::class,
-            'embeds'         => \Encore\Admin\Form\Field\Embeds::class,
-            'editor'         => \Encore\Admin\Form\Field\Editor::class,
-            'email'          => \Encore\Admin\Form\Field\Email::class,
-            'file'           => \Encore\Admin\Form\Field\File::class,
-            'hasMany'        => \Encore\Admin\Form\Field\HasMany::class,
-            'hidden'         => \Encore\Admin\Form\Field\Hidden::class,
-            'id'             => \Encore\Admin\Form\Field\Id::class,
-            'image'          => \Encore\Admin\Form\Field\Image::class,
-            'ip'             => \Encore\Admin\Form\Field\Ip::class,
-            'map'            => \Encore\Admin\Form\Field\Map::class,
-            'mobile'         => \Encore\Admin\Form\Field\Mobile::class,
-            'month'          => \Encore\Admin\Form\Field\Month::class,
-            'multipleSelect' => \Encore\Admin\Form\Field\MultipleSelect::class,
-            'number'         => \Encore\Admin\Form\Field\Number::class,
-            'password'       => \Encore\Admin\Form\Field\Password::class,
-            'radio'          => \Encore\Admin\Form\Field\Radio::class,
-            'rate'           => \Encore\Admin\Form\Field\Rate::class,
-            'select'         => \Encore\Admin\Form\Field\Select::class,
-            'slider'         => \Encore\Admin\Form\Field\Slider::class,
-            'switch'         => \Encore\Admin\Form\Field\SwitchField::class,
-            'text'           => \Encore\Admin\Form\Field\Text::class,
-            'textarea'       => \Encore\Admin\Form\Field\Textarea::class,
-            'time'           => \Encore\Admin\Form\Field\Time::class,
-            'timeRange'      => \Encore\Admin\Form\Field\TimeRange::class,
-            'url'            => \Encore\Admin\Form\Field\Url::class,
-            'year'           => \Encore\Admin\Form\Field\Year::class,
-            'html'           => \Encore\Admin\Form\Field\Html::class,
-            'tags'           => \Encore\Admin\Form\Field\Tags::class,
-            'icon'           => \Encore\Admin\Form\Field\Icon::class,
-            'multipleFile'   => \Encore\Admin\Form\Field\MultipleFile::class,
-            'multipleImage'  => \Encore\Admin\Form\Field\MultipleImage::class,
-            'captcha'        => \Encore\Admin\Form\Field\Captcha::class,
+            'button'         => \Runhare\Admin\Form\Field\Button::class,
+            'checkbox'       => \Runhare\Admin\Form\Field\Checkbox::class,
+            'color'          => \Runhare\Admin\Form\Field\Color::class,
+            'currency'       => \Runhare\Admin\Form\Field\Currency::class,
+            'date'           => \Runhare\Admin\Form\Field\Date::class,
+            'dateRange'      => \Runhare\Admin\Form\Field\DateRange::class,
+            'datetime'       => \Runhare\Admin\Form\Field\Datetime::class,
+            'dateTimeRange'  => \Runhare\Admin\Form\Field\DatetimeRange::class,
+            'datetimeRange'  => \Runhare\Admin\Form\Field\DatetimeRange::class,
+            'decimal'        => \Runhare\Admin\Form\Field\Decimal::class,
+            'display'        => \Runhare\Admin\Form\Field\Display::class,
+            'divider'        => \Runhare\Admin\Form\Field\Divide::class,
+            'divide'         => \Runhare\Admin\Form\Field\Divide::class,
+            'embeds'         => \Runhare\Admin\Form\Field\Embeds::class,
+            'editor'         => \Runhare\Admin\Form\Field\Editor::class,
+            'email'          => \Runhare\Admin\Form\Field\Email::class,
+            'file'           => \Runhare\Admin\Form\Field\File::class,
+            'hasMany'        => \Runhare\Admin\Form\Field\HasMany::class,
+            'hidden'         => \Runhare\Admin\Form\Field\Hidden::class,
+            'id'             => \Runhare\Admin\Form\Field\Id::class,
+            'image'          => \Runhare\Admin\Form\Field\Image::class,
+            'ip'             => \Runhare\Admin\Form\Field\Ip::class,
+            'map'            => \Runhare\Admin\Form\Field\Map::class,
+            'mobile'         => \Runhare\Admin\Form\Field\Mobile::class,
+            'month'          => \Runhare\Admin\Form\Field\Month::class,
+            'multipleSelect' => \Runhare\Admin\Form\Field\MultipleSelect::class,
+            'number'         => \Runhare\Admin\Form\Field\Number::class,
+            'password'       => \Runhare\Admin\Form\Field\Password::class,
+            'radio'          => \Runhare\Admin\Form\Field\Radio::class,
+            'rate'           => \Runhare\Admin\Form\Field\Rate::class,
+            'select'         => \Runhare\Admin\Form\Field\Select::class,
+            'slider'         => \Runhare\Admin\Form\Field\Slider::class,
+            'switch'         => \Runhare\Admin\Form\Field\SwitchField::class,
+            'text'           => \Runhare\Admin\Form\Field\Text::class,
+            'textarea'       => \Runhare\Admin\Form\Field\Textarea::class,
+            'time'           => \Runhare\Admin\Form\Field\Time::class,
+            'timeRange'      => \Runhare\Admin\Form\Field\TimeRange::class,
+            'url'            => \Runhare\Admin\Form\Field\Url::class,
+            'year'           => \Runhare\Admin\Form\Field\Year::class,
+            'html'           => \Runhare\Admin\Form\Field\Html::class,
+            'tags'           => \Runhare\Admin\Form\Field\Tags::class,
+            'icon'           => \Runhare\Admin\Form\Field\Icon::class,
+            'multipleFile'   => \Runhare\Admin\Form\Field\MultipleFile::class,
+            'multipleImage'  => \Runhare\Admin\Form\Field\MultipleImage::class,
+            'captcha'        => \Runhare\Admin\Form\Field\Captcha::class,
         ];
 
         foreach ($map as $abstract => $class) {

@@ -1,6 +1,6 @@
 <?php
 
-namespace Encore\Admin\Grid\Filter;
+namespace Runhare\Admin\Grid\Filter;
 
 class Gt extends AbstractFilter
 {

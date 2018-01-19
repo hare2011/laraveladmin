@@ -7,7 +7,7 @@
  * @Time   Nov 17, 2017 9:35:19 AM
  */
 
-namespace Encore\Admin\Event;
+namespace Runhare\Admin\Event;
 
 class DeleteEvent {
     

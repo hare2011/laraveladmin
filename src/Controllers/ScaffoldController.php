@@ -1,12 +1,12 @@
 <?php
 
-namespace Encore\Admin\Controllers;
+namespace Runhare\Admin\Controllers;
 
-use Encore\Admin\Facades\Admin;
-use Encore\Admin\Layout\Content;
-use Encore\Admin\Scaffold\ControllerCreator;
-use Encore\Admin\Scaffold\MigrationCreator;
-use Encore\Admin\Scaffold\ModelCreator;
+use Runhare\Admin\Facades\Admin;
+use Runhare\Admin\Layout\Content;
+use Runhare\Admin\Scaffold\ControllerCreator;
+use Runhare\Admin\Scaffold\MigrationCreator;
+use Runhare\Admin\Scaffold\ModelCreator;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Artisan;

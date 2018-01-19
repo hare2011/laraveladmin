@@ -1,8 +1,8 @@
 <?php
 
-namespace Encore\Admin\Grid\Filter;
+namespace Runhare\Admin\Grid\Filter;
 
-use Encore\Admin\Admin;
+use Runhare\Admin\Admin;
 
 class Between extends AbstractFilter
 {

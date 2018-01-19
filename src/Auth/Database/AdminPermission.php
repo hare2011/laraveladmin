@@ -1,6 +1,6 @@
 <?php
 
-namespace Encore\Admin\Auth\Database;
+namespace Runhare\Admin\Auth\Database;
 
 trait AdminPermission
 {

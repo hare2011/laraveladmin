@@ -1,13 +1,13 @@
 <?php
 
-namespace Encore\Admin\Grid\Filter\Field;
+namespace Runhare\Admin\Grid\Filter\Field;
 
-use Encore\Admin\Admin;
+use Runhare\Admin\Admin;
 
 class DateTime
 {
     /**
-     * @var \Encore\Admin\Grid\Filter\AbstractFilter
+     * @var \Runhare\Admin\Grid\Filter\AbstractFilter
      */
     protected $filter;
 

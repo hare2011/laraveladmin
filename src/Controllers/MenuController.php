@@ -1,16 +1,16 @@
 <?php
 
-namespace Encore\Admin\Controllers;
+namespace Runhare\Admin\Controllers;
 
-use Encore\Admin\Auth\Database\Menu;
-use Encore\Admin\Auth\Database\Role;
-use Encore\Admin\Facades\Admin;
-use Encore\Admin\Form;
-use Encore\Admin\Layout\Column;
-use Encore\Admin\Layout\Content;
-use Encore\Admin\Layout\Row;
-use Encore\Admin\Tree;
-use Encore\Admin\Widgets\Box;
+use Runhare\Admin\Auth\Database\Menu;
+use Runhare\Admin\Auth\Database\Role;
+use Runhare\Admin\Facades\Admin;
+use Runhare\Admin\Form;
+use Runhare\Admin\Layout\Column;
+use Runhare\Admin\Layout\Content;
+use Runhare\Admin\Layout\Row;
+use Runhare\Admin\Tree;
+use Runhare\Admin\Widgets\Box;
 use Illuminate\Routing\Controller;
 
 class MenuController extends Controller
@@ -32,7 +32,7 @@ class MenuController extends Controller
                 $row->column(6, $this->treeView()->render());
 
                 $row->column(6, function (Column $column) {
-                    $form = new \Encore\Admin\Widgets\Form();
+                    $form = new \Runhare\Admin\Widgets\Form();
                     $form->action(admin_url('auth/menu'));
 
                     $form->select('parent_id', trans('admin::lang.parent_id'))->options(Menu::selectOptions());
@@ -57,12 +57,12 @@ class MenuController extends Controller
     public function show($id)
     {
         return redirect()->action(
-            '\Encore\Admin\Controllers\MenuController@edit', ['id' => $id]
+            '\Runhare\Admin\Controllers\MenuController@edit', ['id' => $id]
         );
     }
 
     /**
-     * @return \Encore\Admin\Tree
+     * @return \Runhare\Admin\Tree
      */
     protected function treeView()
     {

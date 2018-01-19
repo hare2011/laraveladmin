@@ -1,9 +1,9 @@
 <?php
 
-namespace Encore\Admin\Middleware;
+namespace Runhare\Admin\Middleware;
 
-use Encore\Admin\Form;
-use Encore\Admin\Grid;
+use Runhare\Admin\Form;
+use Runhare\Admin\Grid;
 use Illuminate\Http\Request;
 
 class BootstrapMiddleware

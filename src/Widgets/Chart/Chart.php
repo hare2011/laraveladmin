@@ -1,9 +1,9 @@
 <?php
 
-namespace Encore\Admin\Widgets\Chart;
+namespace Runhare\Admin\Widgets\Chart;
 
-use Encore\Admin\Admin;
-use Encore\Admin\Widgets\Widget;
+use Runhare\Admin\Admin;
+use Runhare\Admin\Widgets\Widget;
 use Illuminate\Contracts\Support\Arrayable;
 use Illuminate\Contracts\Support\Renderable;
 

@@ -4,12 +4,12 @@ namespace DummyNamespace;
 
 use DummyModelNamespace;
 
-use Encore\Admin\Form;
-use Encore\Admin\Grid;
-use Encore\Admin\Facades\Admin;
-use Encore\Admin\Layout\Content;
+use Runhare\Admin\Form;
+use Runhare\Admin\Grid;
+use Runhare\Admin\Facades\Admin;
+use Runhare\Admin\Layout\Content;
 use App\Http\Controllers\Controller;
-use Encore\Admin\Controllers\ModelForm;
+use Runhare\Admin\Controllers\ModelForm;
 
 class DummyClass extends Controller
 {

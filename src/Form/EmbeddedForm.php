@@ -1,8 +1,8 @@
 <?php
 
-namespace Encore\Admin\Form;
+namespace Runhare\Admin\Form;
 
-use Encore\Admin\Form;
+use Runhare\Admin\Form;
 use Illuminate\Support\Collection;
 
 /**

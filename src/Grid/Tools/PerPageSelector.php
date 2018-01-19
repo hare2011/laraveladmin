@@ -1,9 +1,9 @@
 <?php
 
-namespace Encore\Admin\Grid\Tools;
+namespace Runhare\Admin\Grid\Tools;
 
-use Encore\Admin\Admin;
-use Encore\Admin\Grid;
+use Runhare\Admin\Admin;
+use Runhare\Admin\Grid;
 
 class PerPageSelector extends AbstractTool
 {

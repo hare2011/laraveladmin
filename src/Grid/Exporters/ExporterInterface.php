@@ -1,6 +1,6 @@
 <?php
 
-namespace Encore\Admin\Grid\Exporters;
+namespace Runhare\Admin\Grid\Exporters;
 
 interface ExporterInterface
 {

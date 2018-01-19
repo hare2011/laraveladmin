@@ -1,8 +1,8 @@
 <?php
 
-namespace Encore\Admin\Widgets\Chart;
+namespace Runhare\Admin\Widgets\Chart;
 
-use Encore\Admin\Admin;
+use Runhare\Admin\Admin;
 use Illuminate\Support\Arr;
 
 class Pie extends Chart

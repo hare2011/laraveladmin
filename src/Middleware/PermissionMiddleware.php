@@ -1,8 +1,8 @@
 <?php
 
-namespace Encore\Admin\Middleware;
+namespace Runhare\Admin\Middleware;
 
-use Encore\Admin\Auth\Permission;
+use Runhare\Admin\Auth\Permission;
 use Illuminate\Http\Request;
 
 class PermissionMiddleware

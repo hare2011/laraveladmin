@@ -1,9 +1,9 @@
 <?php
 
-namespace Encore\Admin\Auth;
+namespace Runhare\Admin\Auth;
 
-use Encore\Admin\Facades\Admin;
-use Encore\Admin\Middleware\PjaxMiddleware;
+use Runhare\Admin\Facades\Admin;
+use Runhare\Admin\Middleware\PjaxMiddleware;
 use Illuminate\Support\Facades\Auth;
 
 class Permission

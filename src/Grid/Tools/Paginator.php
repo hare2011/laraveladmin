@@ -1,8 +1,8 @@
 <?php
 
-namespace Encore\Admin\Grid\Tools;
+namespace Runhare\Admin\Grid\Tools;
 
-use Encore\Admin\Grid;
+use Runhare\Admin\Grid;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Facades\Input;
 

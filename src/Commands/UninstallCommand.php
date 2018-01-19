@@ -1,6 +1,6 @@
 <?php
 
-namespace Encore\Admin\Commands;
+namespace Runhare\Admin\Commands;
 
 use Illuminate\Console\Command;
 

@@ -3,21 +3,21 @@
 namespace DummyNamespace;
 
 use App\Http\Controllers\Controller;
-use Encore\Admin\Facades\Admin;
-use Encore\Admin\Layout\Column;
-use Encore\Admin\Layout\Content;
-use Encore\Admin\Layout\Row;
-use Encore\Admin\Widgets\Box;
-use Encore\Admin\Widgets\Chart\Bar;
-use Encore\Admin\Widgets\Chart\Doughnut;
-use Encore\Admin\Widgets\Chart\Line;
-use Encore\Admin\Widgets\Chart\Pie;
-use Encore\Admin\Widgets\Chart\PolarArea;
-use Encore\Admin\Widgets\Chart\Radar;
-use Encore\Admin\Widgets\Collapse;
-use Encore\Admin\Widgets\InfoBox;
-use Encore\Admin\Widgets\Tab;
-use Encore\Admin\Widgets\Table;
+use Runhare\Admin\Facades\Admin;
+use Runhare\Admin\Layout\Column;
+use Runhare\Admin\Layout\Content;
+use Runhare\Admin\Layout\Row;
+use Runhare\Admin\Widgets\Box;
+use Runhare\Admin\Widgets\Chart\Bar;
+use Runhare\Admin\Widgets\Chart\Doughnut;
+use Runhare\Admin\Widgets\Chart\Line;
+use Runhare\Admin\Widgets\Chart\Pie;
+use Runhare\Admin\Widgets\Chart\PolarArea;
+use Runhare\Admin\Widgets\Chart\Radar;
+use Runhare\Admin\Widgets\Collapse;
+use Runhare\Admin\Widgets\InfoBox;
+use Runhare\Admin\Widgets\Tab;
+use Runhare\Admin\Widgets\Table;
 
 class HomeController extends Controller
 {
