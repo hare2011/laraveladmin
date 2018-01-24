@@ -59,7 +59,8 @@ class AdminServiceProvider extends ServiceProvider
         $this->publishes([__DIR__.'/../../assets' => public_path('packages/admin')], 'laravel-admin');
 
         Admin::registerAuthRoutes();
-
+        Admin::registerHelpersRoutes();
+        
         if (file_exists($routes = admin_path('routes.php'))) {
             require $routes;
         }
