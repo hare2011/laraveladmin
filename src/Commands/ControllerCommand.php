@@ -6,14 +6,14 @@ use Illuminate\Console\GeneratorCommand;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputOption;
 
-class MakeCommand extends GeneratorCommand
+class ControllerCommand extends GeneratorCommand
 {
     /**
      * The console command name.
      *
      * @var string
      */
-    protected $name = 'admin:make';
+    protected $name = 'admin:controller';
 
     /**
      * The console command description.
@@ -22,6 +22,7 @@ class MakeCommand extends GeneratorCommand
      */
     protected $description = 'Make empty admin controller';
 
+    protected $model = null;
     /**
      * Execute the console command.
      *
@@ -47,13 +48,11 @@ class MakeCommand extends GeneratorCommand
      */
     protected function modelExists()
     {
-        $model = $this->option('model');
+        $model = $this->ask('the controller model');
 
-        if (empty($model)) {
-            return true;
-        }
+        $this->model = 'App\Model\\'.ucfirst($model);
 
-        return class_exists($model);
+        return class_exists($this->model);
     }
 
     /**
@@ -67,10 +66,10 @@ class MakeCommand extends GeneratorCommand
     protected function replaceClass($stub, $name)
     {
         $stub = parent::replaceClass($stub, $name);
-
+        $DummyTitle = $this->ask('the page title');
         return str_replace(
-            ['DummyModelNamespace', 'DummyModel'],
-            [$this->option('model'), class_basename($this->option('model'))],
+            ['DummyModelNamespace', 'DummyModel','DummyTitle'],
+            [$this->model, class_basename($this->model),$DummyTitle],
             $stub
         );
     }
@@ -82,11 +81,7 @@ class MakeCommand extends GeneratorCommand
      */
     protected function getStub()
     {
-        if ($this->option('model')) {
-            return __DIR__.'/stubs/controller.stub';
-        }
-
-        return __DIR__.'/stubs/blank.stub';
+        return __DIR__.'/stubs/controller.stub';
     }
 
     /**
@@ -101,8 +96,7 @@ class MakeCommand extends GeneratorCommand
         $directory = config('admin.directory');
 
         $namespace = ucfirst(basename($directory));
-
-        return $rootNamespace."\\$namespace\Controllers";
+        return empty($namespace)?$rootNamespace."\Controllers":$rootNamespace."\\$namespace\Controllers";       
     }
 
     /**

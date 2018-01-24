@@ -1,15 +1,15 @@
 <?php
 
-namespace App\Model;
+namespace DummyNamespace;
 
 use Illuminate\Database\Eloquent\Model;
 
-class DummyModel extends Model {
+class DummyClass extends Model {
 
     protected $connection = 'dummyconnect';
     protected $table = 'dummytable';
     protected $dateFormat = 'U';
     public    $timestamps = true;
     protected $guarded = [];
-    
+    public $softDelete = dummybool;
 }

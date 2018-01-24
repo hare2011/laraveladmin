@@ -12,7 +12,8 @@ class AdminServiceProvider extends ServiceProvider
      * @var array
      */
     protected $commands = [
-        'Runhare\Admin\Commands\MakeCommand',
+        'Runhare\Admin\Commands\ControllerCommand',
+        'Runhare\Admin\Commands\ModelCommand',
         'Runhare\Admin\Commands\MenuCommand',
         'Runhare\Admin\Commands\InstallCommand',
         'Runhare\Admin\Commands\UninstallCommand',
