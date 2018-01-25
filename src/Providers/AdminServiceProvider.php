@@ -12,7 +12,9 @@ class AdminServiceProvider extends ServiceProvider
      * @var array
      */
     protected $commands = [
-        'Runhare\Admin\Commands\MakeCommand',
+        'Runhare\Admin\Commands\ControllerCommand',
+        'Runhare\Admin\Commands\ModelCommand',
+        'Runhare\Admin\Commands\RouteCommand',
         'Runhare\Admin\Commands\MenuCommand',
         'Runhare\Admin\Commands\InstallCommand',
         'Runhare\Admin\Commands\UninstallCommand',
@@ -59,7 +61,8 @@ class AdminServiceProvider extends ServiceProvider
         $this->publishes([__DIR__.'/../../assets' => public_path('packages/admin')], 'laravel-admin');
 
         Admin::registerAuthRoutes();
-
+        Admin::registerHelpersRoutes();
+        
         if (file_exists($routes = admin_path('routes.php'))) {
             require $routes;
         }

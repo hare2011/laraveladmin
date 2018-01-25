@@ -24,8 +24,8 @@ class DummyClass extends Controller
     {
         return Admin::content(function (Content $content) {
 
-            $content->header('header');
-            $content->description('description');
+            $content->header('DummyTitle');
+            $content->description('列表');
 
             $content->body($this->grid());
         });
@@ -41,8 +41,8 @@ class DummyClass extends Controller
     {
         return Admin::content(function (Content $content) use ($id) {
 
-            $content->header('header');
-            $content->description('description');
+            $content->header('DummyTitle');
+            $content->description('编辑');
 
             $content->body($this->form()->edit($id));
         });
@@ -57,8 +57,8 @@ class DummyClass extends Controller
     {
         return Admin::content(function (Content $content) {
 
-            $content->header('header');
-            $content->description('description');
+            $content->header('DummyTitle');
+            $content->description('创建');
 
             $content->body($this->form());
         });
@@ -73,10 +73,24 @@ class DummyClass extends Controller
     {
         return Admin::grid(DummyModel::class, function (Grid $grid) {
 
-            $grid->id('ID')->sortable();
+            $grid->model()->orderBy('id','desc');                   
+                   
+            $grid->filter(function ($filter) {                       
+                $filter->disableIdFilter();
+            });
 
-            $grid->created_at();
-            $grid->updated_at();
+            $grid->actions(function($actions) {
+                $actions->disableDelete();
+            });
+
+            $grid->disableExport();
+
+            $grid->tools(function($tools) {
+                $tools->batch(function($batch) {
+                    $batch->disableDelete();
+                });
+
+            });
         });
     }
 
@@ -88,11 +102,7 @@ class DummyClass extends Controller
     protected function form()
     {
         return Admin::form(DummyModel::class, function (Form $form) {
-
-            $form->display('id', 'ID');
-
-            $form->display('created_at', 'Created At');
-            $form->display('updated_at', 'Updated At');
+     
         });
     }
 }
