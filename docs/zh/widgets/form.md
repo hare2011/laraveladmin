@@ -1,6 +1,6 @@
 # 表单
 
-`Encore\Admin\Widgets\Form`类用来快速构建表单：
+`Runhare\Admin\Widgets\Form`类用来快速构建表单：
 
 ```php
 

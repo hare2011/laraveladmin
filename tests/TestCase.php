@@ -17,7 +17,7 @@ class TestCase extends BaseTestCase
     {
         $app = require __DIR__.'/../vendor/laravel/laravel/bootstrap/app.php';
 
-        $app->register('Encore\Admin\Providers\AdminServiceProvider');
+        $app->register('Runhare\Admin\Providers\AdminServiceProvider');
 
         $app->make('Illuminate\Contracts\Console\Kernel')->bootstrap();
 
@@ -43,7 +43,7 @@ class TestCase extends BaseTestCase
 
         $this->artisan('admin:install');
 
-        \Encore\Admin\Facades\Admin::registerAuthRoutes();
+        \Runhare\Admin\Facades\Admin::registerAuthRoutes();
 
         if (file_exists($routes = admin_path('routes.php'))) {
             require $routes;

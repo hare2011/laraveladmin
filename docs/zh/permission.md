@@ -2,7 +2,7 @@
 
 `laravel-admin`已经内置了`RBAC`权限控制模块，展开左侧边栏的`Auth`，下面有用户、权限、角色三项的管理面板，权限控制的使用如下：
 ```php
-use Encore\Admin\Auth\Permission;
+use Runhare\Admin\Auth\Permission;
 
 class PostController extends Controller
 {

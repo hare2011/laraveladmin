@@ -1,9 +1,9 @@
 # Table
 
-`Encore\Admin\Widgets\Table` class is used to generate forms：
+`Runhare\Admin\Widgets\Table` class is used to generate forms：
 
 ```php
-use Encore\Admin\Widgets\Table;
+use Runhare\Admin\Widgets\Table;
 
 // table 1
 $headers = ['Id', 'Email', 'Name', 'Company'];

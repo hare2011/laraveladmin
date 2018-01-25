@@ -1,9 +1,9 @@
 # Tab component
 
-The `Encore\Admin\Widgets\Tab` class is used to generate the tab components:
+The `Runhare\Admin\Widgets\Tab` class is used to generate the tab components:
 
 ```php
-use Encore\Admin\Widgets\Tab;
+use Runhare\Admin\Widgets\Tab;
 
 $tab = new Tab();
 

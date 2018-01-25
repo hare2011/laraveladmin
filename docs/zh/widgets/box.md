@@ -1,9 +1,9 @@
 # Box组件
 
-`Encore\Admin\Widgets\Box`用来生成box组件：
+`Runhare\Admin\Widgets\Box`用来生成box组件：
 
 ```php
-use Encore\Admin\Widgets\Box;
+use Runhare\Admin\Widgets\Box;
 
 $box = new Box('Box标题', 'Box内容');
 

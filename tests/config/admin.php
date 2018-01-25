@@ -28,7 +28,7 @@ return [
     'auth' => [
         'driver'   => 'session',
         'provider' => '',
-        'model'    => Encore\Admin\Auth\Database\Administrator::class,
+        'model'    => Runhare\Admin\Auth\Database\Administrator::class,
     ],
 
     /*
@@ -51,16 +51,16 @@ return [
      */
     'database' => [
         'users_table' => 'admin_users',
-        'users_model' => Encore\Admin\Auth\Database\Administrator::class,
+        'users_model' => Runhare\Admin\Auth\Database\Administrator::class,
 
         'roles_table' => 'admin_roles',
-        'roles_model' => Encore\Admin\Auth\Database\Role::class,
+        'roles_model' => Runhare\Admin\Auth\Database\Role::class,
 
         'permissions_table' => 'admin_permissions',
-        'permissions_model' => Encore\Admin\Auth\Database\Permission::class,
+        'permissions_model' => Runhare\Admin\Auth\Database\Permission::class,
 
         'menu_table' => 'admin_menu',
-        'menu_model' => Encore\Admin\Auth\Database\Menu::class,
+        'menu_model' => Runhare\Admin\Auth\Database\Menu::class,
 
         'operation_log_table'    => 'admin_operation_log',
         'user_permissions_table' => 'admin_user_permissions',

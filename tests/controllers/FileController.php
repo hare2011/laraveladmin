@@ -3,11 +3,11 @@
 namespace Tests\Controllers;
 
 use App\Http\Controllers\Controller;
-use Encore\Admin\Controllers\ModelForm;
-use Encore\Admin\Facades\Admin;
-use Encore\Admin\Form;
-use Encore\Admin\Grid;
-use Encore\Admin\Layout\Content;
+use Runhare\Admin\Controllers\ModelForm;
+use Runhare\Admin\Facades\Admin;
+use Runhare\Admin\Form;
+use Runhare\Admin\Grid;
+use Runhare\Admin\Layout\Content;
 use Tests\Models\File;
 
 class FileController extends Controller

@@ -1,9 +1,9 @@
 # Table
 
-`Encore\Admin\Widgets\Table`类用来生成表格：
+`Runhare\Admin\Widgets\Table`类用来生成表格：
 
 ```php
-use Encore\Admin\Widgets\Table;
+use Runhare\Admin\Widgets\Table;
 
 // table 1
 $headers = ['Id', 'Email', 'Name', 'Company'];

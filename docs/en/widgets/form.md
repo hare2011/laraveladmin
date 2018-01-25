@@ -1,6 +1,6 @@
 # Form
 
-`Encore\Admin\Widgets\Form` class is used to quickly build a form：
+`Runhare\Admin\Widgets\Form` class is used to quickly build a form：
 
 ```php
 

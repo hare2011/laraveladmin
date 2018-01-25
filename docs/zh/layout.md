@@ -2,7 +2,7 @@
 
 `laravel-admin`的布局可参考后台首页的布局文件[HomeController.php](/src/Commands/stubs/ExampleController.stub)的`index()`方法。
 
-`Encore\Admin\Layout\Content`类用来实现内容区的布局。`Content::row($element)`方法用来添加行元素：
+`Runhare\Admin\Layout\Content`类用来实现内容区的布局。`Content::row($element)`方法用来添加行元素：
 
 ```php
 // 添加文字
@@ -14,7 +14,7 @@ $content->row(new Box('title', 'xxxx'));
 
 ```
 
-`Encore\Admin\Layout\Row`类用于行内元素的布局。`Row::column($width, $element)`方法用来在行内添加列:
+`Runhare\Admin\Layout\Row`类用于行内元素的布局。`Row::column($width, $element)`方法用来在行内添加列:
 
 ```php
 // 行内添加列

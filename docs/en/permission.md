@@ -4,7 +4,7 @@
 `laravel-admin` has built-in` RBAC` permissions control module, expand the left sidebar `Auth`, you can see user, permissions and roles management panel, the use of permissions control as follows:
 
 ```php
-use Encore\Admin\Auth\Permission;
+use Runhare\Admin\Auth\Permission;
 
 class UserController extends Controller
 {
