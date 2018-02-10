@@ -291,7 +291,11 @@ abstract class AbstractFilter {
         $column = explode('.', $this->column);
 
         if (count($column) == 1) {
-            return [$this->query => func_get_args()];
+            $query = func_get_args();
+            if(isset($query[0])){
+                $query[0] = str_replace('#', '.', $query[0]);
+            }
+            return [$this->query => $query];
         }
 
         return call_user_func_array([$this, 'buildRelationCondition'], func_get_args());
