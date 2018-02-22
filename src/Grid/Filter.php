@@ -211,10 +211,11 @@ class Filter
             return '';
         }
         
+        $stackFilters = $this->filters;
         if(!is_null($this->hasValueFilter)){
-            $index = array_search($this->hasValueFilter,$this->filters);
-            unset($this->filters[$index]);
-            array_unshift($this->filters,$this->hasValueFilter);
+            $index = array_search($this->hasValueFilter,$this->filters);           
+            unset($stackFilters[$index]);
+            array_unshift($stackFilters,$this->hasValueFilter);
         }
 
         if ($this->useModal) {

@@ -1,5 +1,5 @@
 @php
-$firstFilter = current($filters);
+$firstFilter = current($stackFilters);
 @endphp
 <div class="form-inline pull-right">
     <form action="{!! $action !!}" method="get" pjax-container>
@@ -11,7 +11,7 @@ $firstFilter = current($filters);
                         <span class="caret"></span>
                     </button>
                    <ul class="dropdown-menu">
-                      @foreach($filters as $filter)             
+                      @foreach($stackFilters as $filter)             
                             <li  name="{{$filter->getName()}}" @if($filter->getName() === $firstFilter->getName()) style="display:none;" @endif><a href="javascript:void(0)" class="filterInputChoice" >{{$filter->getLabel()}}</a></li>
                        @endforeach
                    </ul>
