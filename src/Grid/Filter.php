@@ -49,7 +49,7 @@ class Filter
      * @var bool
      */
     protected $useIdFilter = true;
-    
+
     /**
      * Action of search form.
      *
@@ -61,13 +61,15 @@ class Filter
      * @var string
      */
     protected $view = 'admin::grid.filter';
-    
+
     /**
      * has value filter
-     * 
+     *
      */
     public $hasValueFilter = null;
 
+
+    public $extension = [];
     /**
      * Create a new filter instance.
      *
@@ -87,9 +89,9 @@ class Filter
     {
         $this->useModal = true;
     }
-    
+
     /**
-     * 
+     *
      */
     public function getModal()
     {
@@ -136,7 +138,7 @@ class Filter
     public function conditions()
     {
         $this->removeIDFilterIfNeeded();
-        
+
         $inputs = array_dot(Input::all());
 
         $inputs = array_filter($inputs, function ($input) {
@@ -155,7 +157,7 @@ class Filter
 
         $conditions = [];
 
-        
+
 
         foreach ($this->filters() as $filter) {
             $conditions[] = $filter->condition($params);
@@ -187,7 +189,11 @@ class Filter
     {
         return $this->filters;
     }
-    
+
+    public function extendFilter($method,$class){
+        $this->extension[$method]=$class;
+    }
+
 
     /**
      * Execute the filter with conditions.
@@ -210,7 +216,7 @@ class Filter
         if (empty($this->filters)) {
             return '';
         }
-        
+
         if(!is_null($this->hasValueFilter)){
             $index = array_search($this->hasValueFilter,$this->filters);
             unset($this->filters[$index]);
@@ -227,7 +233,7 @@ class Filter
             $('body').removeClass('modal-open');
             $('.modal-backdrop').remove();
         });
-  
+
         $('.filterInputChoice').click(function(){
            obj = $(this);
            var name = obj.parent().attr('name');
@@ -238,10 +244,10 @@ class Filter
            $('#filterColumn').html(placeholder);
 
            obj.parent().hide();
-           $("li[name='"+old_name+"']").show();   
+           $("li[name='"+old_name+"']").show();
 
-           $('#inputbox').append($('.collectplace').find("div[name='"+old_name+"']").hide()); 
-           $('.collectplace').append($('#inputbox').find("div[name='"+name+"']").show()) 
+           $('#inputbox').append($('.collectplace').find("div[name='"+old_name+"']").hide());
+           $('.collectplace').append($('#inputbox').find("div[name='"+name+"']").show())
 })
 
 EOT;
@@ -295,6 +301,10 @@ EOT;
             $className = '\\Runhare\\Admin\\Grid\\Filter\\'.ucfirst($method);
             $reflection = new ReflectionClass($className);
 
+            return $this->addFilter($reflection->newInstanceArgs($arguments));
+        }
+        elseif(key_exists($method, $this->extension)){
+            $reflection = new ReflectionClass($this->extension[$method]);
             return $this->addFilter($reflection->newInstanceArgs($arguments));
         }
     }

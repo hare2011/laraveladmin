@@ -55,6 +55,11 @@ abstract class AbstractFilter {
     protected $labelShow = true;
 
     /**
+     * 视图模板
+     */
+    protected $view=null;
+
+    /**
      * AbstractFilter constructor.
      *
      * @param $column
@@ -360,9 +365,12 @@ abstract class AbstractFilter {
      * @return \Illuminate\View\View|string
      */
     public function render() {
-        $class = explode('\\', get_called_class());
-        $view = 'admin::filter.' . strtolower(end($class));
-        return view($view, $this->variables());
+        if(is_null($this->view)){
+            $class = explode('\\', get_called_class());
+            $this->view = 'admin::filter.' . strtolower(end($class));
+        }
+
+        return view($this->view, $this->variables());
     }
 
     /**
