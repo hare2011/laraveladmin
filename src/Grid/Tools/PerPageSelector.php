@@ -74,8 +74,8 @@ class PerPageSelector extends AbstractTool
             return "<option value=\"$url\" $selected>$option</option>";
         })->implode("\r\n");
 
-        $show = trans('admin::lang.show');
-        $entries = trans('admin::lang.entries');
+        $show = trans('lang.show');
+        $entries = trans('lang.entries');
 
         return <<<EOT
 

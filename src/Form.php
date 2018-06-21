@@ -345,7 +345,7 @@ class Form
             return $response;
         }
 
-        if ($response = $this->ajaxResponse(trans('admin::lang.save_succeeded'))) {
+        if ($response = $this->ajaxResponse(trans('lang.save_succeeded'))) {
             return $response;
         }
 
@@ -359,7 +359,7 @@ class Form
      */
     protected function redirectAfterStore()
     {
-        admin_toastr(trans('admin::lang.save_succeeded'));
+        admin_toastr(trans('lang.save_succeeded'));
       
         $url = Admin::getGridCurrentUrl();
         if(is_null($url)){
@@ -508,7 +508,7 @@ class Form
         if ($this->handleOrderable($id, $data)) {
             return response([
                 'status'  => true,
-                'message' => trans('admin::lang.update_succeeded'),
+                'message' => trans('lang.update_succeeded'),
             ]);
         }
 
@@ -544,7 +544,7 @@ class Form
             return $result;
         }
 
-        if ($response = $this->ajaxResponse(trans('admin::lang.update_succeeded'))) {
+        if ($response = $this->ajaxResponse(trans('lang.update_succeeded'))) {
             return $response;
         }
 
@@ -558,7 +558,7 @@ class Form
      */
     protected function redirectAfterUpdate()
     {
-        admin_toastr(trans('admin::lang.update_succeeded'));
+        admin_toastr(trans('lang.update_succeeded'));
 
         $url = Admin::getGridCurrentUrl();
         if(is_null($url)){

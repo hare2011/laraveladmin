@@ -27,7 +27,7 @@ class ExportButton extends AbstractTool
             return '';
         }
 
-        $export = trans('admin::lang.export');
+        $export = trans('lang.export');
 
         return <<<EOT
 

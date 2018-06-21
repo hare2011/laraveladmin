@@ -63,7 +63,7 @@ trait UploadField
         $defaultOptions = [
             'overwriteInitial'     => false,
             'initialPreviewAsData' => true,
-            'browseLabel'          => trans('admin::lang.browse'),
+            'browseLabel'          => trans('lang.browse'),
             'showRemove'           => false,
             'showUpload'           => false,
             'initialCaption'       => $this->initialCaption($this->value),

@@ -25,7 +25,7 @@ $firstFilter = current($filters);
             <div class="btn-group btn-group-sm">
                 <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i></button>
                     <a href="{!! $action !!}" class="btn btn-sm btn-warning"><i class="fa fa-undo"></i></a>
-    <a href="" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#filter-modal"><i class="fa fa-filter"></i>&nbsp;&nbsp;{{ trans('admin::lang.filter') }}</a>
+    <a href="" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#filter-modal"><i class="fa fa-filter"></i>&nbsp;&nbsp;{{ trans('lang.filter') }}</a>
 
             </div>
 
@@ -50,7 +50,7 @@ $firstFilter = current($filters);
                     <span aria-hidden="true">&times;</span>
                     <span class="sr-only">Close</span>
                 </button>
-                <h4 class="modal-title" id="myModalLabel">{{ trans('admin::lang.filter') }}</h4>
+                <h4 class="modal-title" id="myModalLabel">{{ trans('lang.filter') }}</h4>
             </div>
             <form action="{!! $action !!}" method="get" pjax-container>
                 <div class="modal-body">
@@ -65,8 +65,8 @@ $firstFilter = current($filters);
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary submit">{{ trans('admin::lang.submit') }}</button>
-                    <button type="reset" class="btn btn-warning pull-left">{{ trans('admin::lang.reset') }}</button>
+                    <button type="submit" class="btn btn-primary submit">{{ trans('lang.submit') }}</button>
+                    <button type="reset" class="btn btn-warning pull-left">{{ trans('lang.reset') }}</button>
                 </div>
             </form>
         </div>

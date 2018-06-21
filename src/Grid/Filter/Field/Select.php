@@ -47,7 +47,7 @@ class Select
      */
     protected function buildOptions()
     {
-        $default = ['' => trans('admin::lang.choose')];
+        $default = ['' => trans('lang.choose')];
 
         if (is_string($this->options)) {
             $this->loadAjaxOptions($this->options);

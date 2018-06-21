@@ -47,7 +47,7 @@ class AuthController extends Controller
         }
 
         if (Auth::guard('admin')->attempt($credentials)) {
-            admin_toastr(trans('admin::lang.login_successful'));
+            admin_toastr(trans('lang.login_successful'));
 
             return redirect()->intended(config('admin.prefix'));
         }
@@ -77,7 +77,7 @@ class AuthController extends Controller
     public function getSetting()
     {
         return Admin::content(function (Content $content) {
-            $content->header(trans('admin::lang.user_setting'));
+            $content->header(trans('lang.user_setting'));
             $content->body($this->settingForm()->edit(Admin::user()->id));
         });
     }
@@ -100,11 +100,11 @@ class AuthController extends Controller
     protected function settingForm()
     {
         return Administrator::form(function (Form $form) {
-            $form->display('username', trans('admin::lang.username'));
-            $form->text('name', trans('admin::lang.name'))->rules('required');
-            $form->image('avatar', trans('admin::lang.avatar'));
-            $form->password('password', trans('admin::lang.password'))->rules('confirmed|required');
-            $form->password('password_confirmation', trans('admin::lang.password_confirmation'))->rules('required')
+            $form->display('username', trans('lang.username'));
+            $form->text('name', trans('lang.name'))->rules('required');
+            $form->image('avatar', trans('lang.avatar'));
+            $form->password('password', trans('lang.password'))->rules('confirmed|required');
+            $form->password('password_confirmation', trans('lang.password_confirmation'))->rules('required')
                 ->default(function ($form) {
                     return $form->model()->password;
                 });
@@ -120,7 +120,7 @@ class AuthController extends Controller
             });
 
             $form->saved(function () {
-                admin_toastr(trans('admin::lang.update_succeeded'));
+                admin_toastr(trans('lang.update_succeeded'));
 
                 return redirect(admin_url('auth/setting'));
             });

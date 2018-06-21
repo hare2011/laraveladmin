@@ -27,7 +27,7 @@ class CreateButton extends AbstractTool
             return '';
         }
 
-        $new = trans('admin::lang.new');
+        $new = trans('lang.new');
 
         return <<<EOT
 

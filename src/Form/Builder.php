@@ -313,15 +313,15 @@ class Builder
     public function title()
     {
         if ($this->mode == static::MODE_CREATE) {
-            return trans('admin::lang.create');
+            return trans('lang.create');
         }
 
         if ($this->mode == static::MODE_EDIT) {
-            return trans('admin::lang.edit');
+            return trans('lang.edit');
         }
 
         if ($this->mode == static::MODE_VIEW) {
-            return trans('admin::lang.view');
+            return trans('lang.view');
         }
 
         return '';
@@ -424,7 +424,7 @@ class Builder
             return '';
         }
 
-        $text = trans('admin::lang.submit');
+        $text = trans('lang.submit');
 
         return <<<EOT
 <div class="btn-group pull-right">
@@ -444,7 +444,7 @@ EOT;
             return '';
         }
 
-        $text = trans('admin::lang.reset');
+        $text = trans('lang.reset');
 
         return <<<EOT
 <div class="btn-group pull-left">

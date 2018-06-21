@@ -12,7 +12,7 @@
             <div class="pull-left info">
                 <p>{{ Admin::user()->name }}</p>
                 <!-- Status 
-                <a href="#"><i class="fa fa-circle text-success"></i> {{ trans('admin::lang.online') }}</a>
+                <a href="#"><i class="fa fa-circle text-success"></i> {{ trans('lang.online') }}</a>
             </div>
         </div>
         -->
@@ -30,7 +30,7 @@
 
         <!-- Sidebar Menu -->
         <ul class="sidebar-menu">
-            <li class="header">{{ trans('admin::lang.menu') }}</li>
+            <li class="header">{{ trans('lang.menu') }}</li>
 
             @each('admin::partials.menu', Admin::menu(), 'item')
 
