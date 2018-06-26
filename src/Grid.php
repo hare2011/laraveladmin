@@ -569,13 +569,13 @@ class Grid
      *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View|string
      */
-    public function renderFilter()
+    public function renderFilter($type='right')
     {
         if (!$this->option('useFilter')) {
             return '';
         }
 
-        return $this->filter->render();
+        return $this->filter->render($type);
     }
 
     /**

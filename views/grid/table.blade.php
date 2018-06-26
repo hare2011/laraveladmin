@@ -4,7 +4,7 @@
         <h3 class="box-title"></h3>
 
         <div class="pull-right">
-            {!! $grid->renderFilter() !!}
+            {!! $grid->renderFilter('right') !!}
             {!! $grid->renderExportButton() !!}
             {!! $grid->renderCreateButton() !!}
         </div>
@@ -12,8 +12,14 @@
         <span>
             {!! $grid->renderHeaderTools() !!}
         </span>
+        
 
     </div>
+    
+    
+    {!! $grid->renderFilter('lineshow') !!}
+       
+    
     <!-- /.box-header -->
     <div class="box-body table-responsive no-padding">
         <table class="table table-hover table-striped table-condensed">

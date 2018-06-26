@@ -85,9 +85,9 @@ class Filter
     /**
      * Use modal to show filter form.
      */
-    public function useModal()
+    public function setModal($type='right')
     {
-        $this->useModal = true;
+        $this->useModal = $type;
     }
 
     /**
@@ -210,20 +210,18 @@ class Filter
      *
      * @return \Illuminate\View\View|string
      */
-    public function render()
+    public function render($type)
     {
 
         if (empty($this->filters)) {
             return '';
         }
-
-        if(!is_null($this->hasValueFilter)){
-            $index = array_search($this->hasValueFilter,$this->filters);
-            unset($this->filters[$index]);
-            array_unshift($this->filters,$this->hasValueFilter);
+        
+        if(($type === 'lineshow' && $this->useModal !='lineshow') || ($type !== 'lineshow' && $this->useModal ==='lineshow')){
+            return '';
         }
 
-        if ($this->useModal) {
+        if ($this->useModal === 'modal') {
             $this->view = 'admin::filter.modal';
 
             $script = <<<'EOT'
@@ -253,10 +251,16 @@ class Filter
 EOT;
             Admin::script($script);
         }
+        elseif($this->useModal === 'lineshow'){
+            $this->view = 'admin::filter.lineshow';
+            
+
+        }
 
         return view($this->view)->with([
             'action'  => $this->action ?: $this->urlWithoutFilters(),
             'filters' => $this->filters,
+            'hasValueFilter'=>$this->hasValueFilter,
         ]);
     }
 
