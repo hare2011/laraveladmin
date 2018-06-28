@@ -21,7 +21,7 @@
        
     
     <!-- /.box-header -->
-    <div class="box-body table-responsive no-padding">
+    <div class="box-body table-responsive no-padding" style="overflow:scroll;max-height:500px;" id="grad_table">
         <table class="table table-hover table-striped table-condensed">
             <tr>
                 @foreach($grid->columns() as $column)
@@ -45,3 +45,8 @@
     </div>
     <!-- /.box-body -->
 </div>
+<script type="text/javascript">
+    var windowHeight = $(window).height();
+    var maxHeight = windowHeight * 500 / 703;
+    $('#grad_table').css('max-height',maxHeight);
+</script>

@@ -232,6 +232,7 @@ class Filter
             $('.modal-backdrop').remove();
         });
 
+
         $('.filterInputChoice').click(function(){
            obj = $(this);
            var name = obj.parent().attr('name');
