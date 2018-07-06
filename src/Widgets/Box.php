@@ -111,9 +111,14 @@ class Box extends Widget implements Renderable
     /**
      * add url at foot
      */
-    public function footerAdd($name,$url,$pull_right=null){
+    public function footerAddHref($name,$url,$pull_right=null){
         
         $this->footer[]="<a href='$url' class='btn btn-sm  btn-flat $pull_right'>$name</a>";
+        return $this;
+    }
+    
+    public function footerAddContent($content){
+        $this->footer[]=$content;
         return $this;
     }
 
