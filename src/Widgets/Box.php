@@ -25,6 +25,11 @@ class Box extends Widget implements Renderable
      * @var array
      */
     protected $tools = [];
+    
+    /**
+     * @var array
+     */
+    protected  $footer =[];
 
     /**
      * Box constructor.
@@ -102,6 +107,15 @@ class Box extends Widget implements Renderable
 
         return $this;
     }
+    
+    /**
+     * add url at foot
+     */
+    public function footerAdd($name,$url,$pull_right=null){
+        
+        $this->footer[]="<a href='$url' class='btn btn-sm  btn-flat $pull_right'>$name</a>";
+        return $this;
+    }
 
     /**
      * Set box style.
@@ -146,6 +160,7 @@ class Box extends Widget implements Renderable
             'title'      => $this->title,
             'content'    => $this->content,
             'tools'      => $this->tools,
+            'footer'     => $this->footer,
             'attributes' => $this->formatAttributes(),
         ];
     }
