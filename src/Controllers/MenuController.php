@@ -10,6 +10,7 @@ use Runhare\Admin\Layout\Column;
 use Runhare\Admin\Layout\Content;
 use Runhare\Admin\Layout\Row;
 use Runhare\Admin\Tree;
+use Runhare\Admin\Grid;
 use Runhare\Admin\Widgets\Box;
 use Illuminate\Routing\Controller;
 
@@ -24,6 +25,7 @@ class MenuController extends Controller
      */
     public function index()
     {
+        Grid::saveCurrentUrl();
         return Admin::content(function (Content $content) {
             $content->header(trans('lang.menu'));
             $content->description(trans('lang.list'));

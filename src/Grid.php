@@ -225,7 +225,7 @@ class Grid
      * 
      */
     
-    protected function saveCurrentUrl()
+    static function saveCurrentUrl()
     {
         session(['grid_current_url'=> preg_replace('/_pjax[^&]+container&?/','',app('request')->getUri())]);
     }
@@ -984,7 +984,7 @@ class Grid
         try {
             $this->excludeSoftDeleteRow();
             $this->build();
-            $this->saveCurrentUrl();           
+            self::saveCurrentUrl();           
         } catch (\Exception $e) {
             return Handle::renderException($e);
         }
