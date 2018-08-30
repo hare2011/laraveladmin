@@ -8,10 +8,10 @@ class Editor extends Field
 {
     protected $view = 'admin::form.editor';
     protected static $css = [
-        '/packages/wangEditor-2.1.23/dist/css/wangEditor.min.css',
+        '/packages/admin/wangEditor-2.1.23/dist/css/wangEditor.min.css',
     ];
     protected static $js = [
-        '/packages/wangEditor-2.1.23/dist/js/wangEditor.min.js',
+        '/packages/admin/wangEditor-2.1.23/dist/js/wangEditor.min.js',
     ];
 
     public function render() {
