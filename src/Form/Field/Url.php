@@ -4,7 +4,6 @@ namespace Runhare\Admin\Form\Field;
 
 class Url extends Text
 {
-    protected $rules = 'url';
 
     public function render()
     {
