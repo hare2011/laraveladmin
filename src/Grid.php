@@ -913,6 +913,7 @@ class Grid
             'radio'       => \Runhare\Admin\Grid\Displayers\Radio::class,
             'checkbox'    => \Runhare\Admin\Grid\Displayers\Checkbox::class,
             'orderable'   => \Runhare\Admin\Grid\Displayers\Orderable::class,
+            'expand'      => \Runhare\Admin\Grid\Displayers\ExpandRow::class,
         ];
 
         foreach ($map as $abstract => $class) {
