@@ -36,7 +36,7 @@ EOT;
         $key = $this->getKey().$id;
 
         return <<<EOT
-<a class="btn btn-xs btn-default grid-expand" data-inserted="0" data-key="{$key}" data-toggle="collapse" data-target="#grid-collapse-{$key}">
+<a class="btn btn-xs btn-primary grid-expand" data-inserted="0" data-key="{$key}" data-toggle="collapse" data-target="#grid-collapse-{$key}">
     <i class="fa fa-caret-right"></i> $btn
 </a>
 <template class="grid-expand-{$key}">
