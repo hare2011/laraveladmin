@@ -33,7 +33,7 @@ EOT;
 
         $btn = $btn ?: $this->column->getName();
 
-        $key = $this->getKey().$id;
+        $key = $this->getKey().$id.str_random(6);
 
         return <<<EOT
 <a class="btn btn-xs btn-primary grid-expand" data-inserted="0" data-key="{$key}" data-toggle="collapse" data-target="#grid-collapse-{$key}">
