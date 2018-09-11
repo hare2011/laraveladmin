@@ -691,21 +691,22 @@ class Form
 
                     foreach ($prepared[$name] as $related) {
                         $relation = $this->model()->$name();
-
                         $keyName = $relation->getRelated()->getKeyName();
-
-                        $instance = $relation->findOrNew(array_get($related, $keyName));
-
-                        if ($related[static::REMOVE_FLAG_NAME] == 1) {
-                            $instance->delete();
-
-                            continue;
-                        }
-
+                        $keyValue = array_get($related, $keyName);
+                        $instance = $relation->findOrNew($keyValue);
+                        if(!empty($keyValue)){
+                            if ($related[static::REMOVE_FLAG_NAME] == 1) {
+                                $instance->delete();
+                                continue;
+                            }                
+                        }else{
+                            //如果是新创建,过滤掉为空的字段,如果是数据库内部存在内容则不动。
+                            array_filter($related);                           
+                        }                        
                         array_forget($related, static::REMOVE_FLAG_NAME);
-
+                        if(empty($related))   continue;
+                        
                         $instance->fill($related);
-
                         $instance->save();
                     }
 
