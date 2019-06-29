@@ -9,7 +9,7 @@ class BatchDelete extends BatchAction
      */
     public function script()
     {
-        $confirm = trans('lang.delete_confirm');
+        $confirm = trans('admin::lang.delete_confirm');
 
         return <<<EOT
 

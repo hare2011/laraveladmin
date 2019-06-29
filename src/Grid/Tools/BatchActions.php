@@ -34,7 +34,7 @@ class BatchActions extends AbstractTool
      */
     protected function appendDefaultAction()
     {
-        $this->add(trans('lang.delete'), new BatchDelete());
+        $this->add(trans('admin::lang.delete'), new BatchDelete());
     }
 
     /**

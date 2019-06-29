@@ -75,7 +75,7 @@ class Permission
      */
     protected static function error()
     {
-        $response = response(Admin::content()->withError(trans('lang.deny')));
+        $response = response(Admin::content()->withError(trans('admin::lang.deny')));
 
         PjaxMiddleware::respond($response);
     }

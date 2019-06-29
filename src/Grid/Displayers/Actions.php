@@ -146,7 +146,7 @@ EOT;
      */
     protected function deleteAction()
     {
-        $confirm = trans('lang.delete_confirm');
+        $confirm = trans('admin::lang.delete_confirm');
 
         $script = <<<SCRIPT
 

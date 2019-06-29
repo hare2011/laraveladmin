@@ -17,7 +17,7 @@ class Captcha extends Text
         }
 
         $this->column = '__captcha__';
-        $this->label = trans('lang.captcha');
+        $this->label = trans('admin::lang.captcha');
     }
 
     public function setForm(Form $form = null)
