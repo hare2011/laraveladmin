@@ -36,7 +36,7 @@ class TreeRight implements Renderable
      */
     protected $view = [
         'tree'   => 'admin::treeright',
-        'branch' => 'admin::tree.branch',
+        'branch' => 'admin::tree.branchright',
     ];
 
     /**
