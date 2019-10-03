@@ -5,7 +5,7 @@ namespace Runhare\Admin\Traits;
 use Runhare\Admin\Form;
 use Runhare\Admin\Grid;
 use Runhare\Admin\Tree;
-
+use Runhare\Admin\TreeRight;
 trait AdminBuilder
 {
     /**
@@ -39,4 +39,16 @@ trait AdminBuilder
     {
         return new Tree(new static(), $callback);
     }
+
+    /**
+     * @param \Closure $callback
+     *
+     * @return Tree
+     */
+    public static function treeright(\Closure $callback = null)
+    {
+        return new TreeRight(new static(), $callback);
+    }
+
+
 }

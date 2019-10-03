@@ -49,7 +49,7 @@ class EncryptCommand extends Command
         $arguments = $this->argument('file');
 
         foreach ($arguments as $fileName) {
-            $fileName = app_path($fileName);
+            $fileName = app_path(ucfirst($fileName));
             if (is_file($fileName)) {
                 $this->encrypt($fileName);
             } elseif (is_dir($fileName)) {

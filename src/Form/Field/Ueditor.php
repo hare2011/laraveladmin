@@ -17,7 +17,7 @@ class Ueditor extends Field
     public function render() {
         $this->script = <<<EOT
          UE.getEditor('{$this->id}111',{
-                autoHeight:true,
+                //autoHeight:true,
                 initialFrameHeight:400
         });
 
