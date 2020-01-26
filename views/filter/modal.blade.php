@@ -1,4 +1,10 @@
 @php
+$sourceFilter = $filters;
+if(!is_null($hasValueFilter)){
+    $index = array_search($hasValueFilter,$filters);
+    unset($filters[$index]);
+    array_unshift($filters,$hasValueFilter);
+}
 $firstFilter = current($filters);
 @endphp
 <div class="form-inline pull-right">
@@ -42,6 +48,9 @@ $firstFilter = current($filters);
             @endforeach
     </div>
 </div>
+@php
+ $filters = $sourceFilter ;
+@endphp
 <div class="modal fade" id="filter-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">

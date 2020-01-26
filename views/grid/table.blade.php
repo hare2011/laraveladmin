@@ -4,7 +4,7 @@
         <h3 class="box-title"></h3>
 
         <div class="pull-right">
-            {!! $grid->renderFilter() !!}
+            {!! $grid->renderFilter('right') !!}
             {!! $grid->renderExportButton() !!}
             {!! $grid->renderCreateButton() !!}
         </div>
@@ -12,10 +12,16 @@
         <span>
             {!! $grid->renderHeaderTools() !!}
         </span>
+        
 
     </div>
+    
+    
+    {!! $grid->renderFilter('lineshow') !!}
+       
+    
     <!-- /.box-header -->
-    <div class="box-body table-responsive no-padding">
+    <div class="box-body table-responsive no-padding" id="grad_table">
         <table class="table table-hover table-striped table-condensed">
             <tr>
                 @foreach($grid->columns() as $column)
@@ -39,3 +45,4 @@
     </div>
     <!-- /.box-body -->
 </div>
+

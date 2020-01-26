@@ -40,6 +40,7 @@ use Symfony\Component\HttpFoundation\Response;
  * @method Field\Slider         slider($column, $label = '')
  * @method Field\Map            map($latitude, $longitude, $label = '')
  * @method Field\Editor         editor($column, $label = '')
+ * @method Field\Ueditor         ueditor($column, $label = '')
  * @method Field\File           file($column, $label = '')
  * @method Field\Image          image($column, $label = '')
  * @method Field\Date           date($column, $label = '')
@@ -353,6 +354,75 @@ class Form
     }
 
     /**
+     * Store a new key=>value record.
+     *
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector|\Illuminate\Http\JsonResponse
+     */
+    public function modelSingStore()
+    {
+        $data = Input::all();
+
+        // Handle validation errors.
+        if ($validationMessages = $this->validationMessages($data)) {
+            return back()->withInput()->withErrors($validationMessages);
+        }
+
+        if (($response = $this->prepare($data)) instanceof Response) {
+            return $response;
+        }
+
+        DB::transaction(function () {
+            $inserts = $this->prepareInsert($this->updates);
+
+            foreach ($inserts as $column => $value) {
+                $this->model->updateOrCreate(
+                    ['type'=>$column], ['info'=>$value]
+                );
+            }
+
+        });
+
+        if (($response = $this->complete($this->saved)) instanceof Response) {
+            return $response;
+        }
+
+        if ($response = $this->ajaxResponse(trans('admin::lang.save_succeeded'))) {
+            return $response;
+        }
+
+        admin_toastr(trans('admin::lang.save_succeeded'));
+
+        return back();
+    }
+
+    /**
+     * Set all fields value in form.
+     *
+     * @param $id
+     *
+     * @return void
+     */
+    public function modelSingShow()
+    {
+
+        //$this->model = $this->model->with($relations)->findOrFail($id);
+        //$data = $this->model->toArray();
+        $model = $this->model;
+        $this->builder()->getTools()->disableListButton();
+        $this->builder->fields()->each(function (Field $field) use ($model) {
+            $column = $field->column();
+            $modeInfo = $model->where(['type'=>$column])->select('info')->first();
+            $data=[];
+            if(!empty($modeInfo)){
+                $data[$column]=$modeInfo->info;
+            }
+            $field->fill($data);
+        });
+
+        return $this;
+    }
+
+    /**
      * Get RedirectResponse after store.
      *
      * @return \Illuminate\Http\RedirectResponse
@@ -515,7 +585,7 @@ class Form
         /* @var Model $this->model */
         $this->model = $this->model->with($this->getRelations())->findOrFail($id);
          
-        $this->builder()->setMode('edit');
+        $this->builder()->setMode(Builder::MODE_EDIT);
         $this->setFieldOriginalValue();
 
         // Handle validation errors.
@@ -691,21 +761,22 @@ class Form
 
                     foreach ($prepared[$name] as $related) {
                         $relation = $this->model()->$name();
-
                         $keyName = $relation->getRelated()->getKeyName();
-
-                        $instance = $relation->findOrNew(array_get($related, $keyName));
-
-                        if ($related[static::REMOVE_FLAG_NAME] == 1) {
-                            $instance->delete();
-
-                            continue;
-                        }
-
+                        $keyValue = array_get($related, $keyName);
+                        $instance = $relation->findOrNew($keyValue);
+                        if(!empty($keyValue)){
+                            if ($related[static::REMOVE_FLAG_NAME] == 1) {
+                                $instance->delete();
+                                continue;
+                            }                
+                        }else{
+                            //如果是新创建,过滤掉为空的字段,如果是数据库内部存在内容则不动。
+                            array_filter($related);                           
+                        }                        
                         array_forget($related, static::REMOVE_FLAG_NAME);
-
+                        if(empty($related))   continue;
+                        
                         $instance->fill($related);
-
                         $instance->save();
                     }
 
@@ -1189,6 +1260,7 @@ class Form
             'divide'         => \Runhare\Admin\Form\Field\Divide::class,
             'embeds'         => \Runhare\Admin\Form\Field\Embeds::class,
             'editor'         => \Runhare\Admin\Form\Field\Editor::class,
+            'ueditor'         => \Runhare\Admin\Form\Field\Ueditor::class,
             'email'          => \Runhare\Admin\Form\Field\Email::class,
             'file'           => \Runhare\Admin\Form\Field\File::class,
             'hasMany'        => \Runhare\Admin\Form\Field\HasMany::class,

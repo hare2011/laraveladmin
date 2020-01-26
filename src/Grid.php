@@ -225,7 +225,7 @@ class Grid
      * 
      */
     
-    protected function saveCurrentUrl()
+    static function saveCurrentUrl()
     {
         session(['grid_current_url'=> preg_replace('/_pjax[^&]+container&?/','',app('request')->getUri())]);
     }
@@ -569,13 +569,13 @@ class Grid
      *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View|string
      */
-    public function renderFilter()
+    public function renderFilter($type='right')
     {
         if (!$this->option('useFilter')) {
             return '';
         }
 
-        return $this->filter->render();
+        return $this->filter->render($type);
     }
 
     /**
@@ -913,6 +913,7 @@ class Grid
             'radio'       => \Runhare\Admin\Grid\Displayers\Radio::class,
             'checkbox'    => \Runhare\Admin\Grid\Displayers\Checkbox::class,
             'orderable'   => \Runhare\Admin\Grid\Displayers\Orderable::class,
+            'expand'      => \Runhare\Admin\Grid\Displayers\ExpandRow::class,
         ];
 
         foreach ($map as $abstract => $class) {
@@ -984,7 +985,7 @@ class Grid
         try {
             $this->excludeSoftDeleteRow();
             $this->build();
-            $this->saveCurrentUrl();           
+            self::saveCurrentUrl();           
         } catch (\Exception $e) {
             return Handle::renderException($e);
         }

@@ -16,6 +16,10 @@ class AdminServiceProvider extends ServiceProvider
         'Runhare\Admin\Commands\MenuCommand',
         'Runhare\Admin\Commands\InstallCommand',
         'Runhare\Admin\Commands\UninstallCommand',
+        'Runhare\Admin\Commands\ModelCommand',
+        'Runhare\Admin\Commands\RouteCommand',
+        'Runhare\Admin\Commands\EncryptCommand',
+        
     ];
 
     /**

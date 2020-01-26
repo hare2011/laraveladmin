@@ -10,4 +10,11 @@
     <div class="box-body" style="display: block;">
         {!! $content !!}
     </div><!-- /.box-body -->
+     @if(count($footer))
+    <div class="box-footer clearfix">
+              @foreach($footer as $ft)
+              {!! $ft !!}
+              @endforeach
+    </div>
+    @endif
 </div>

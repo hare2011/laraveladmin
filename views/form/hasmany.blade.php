@@ -1,11 +1,11 @@
-
+<div class="panel panel-default">
 <div class="row">
     <div class="col-md-{{$width['label']}}"><h4 class="pull-right">{{ $label }}</h4></div>
     <div class="col-md-{{$width['field']}}"></div>
 </div>
 
-<hr style="margin-top: 0px;">
 
+<div class="panel-body">
 <div id="has-many-{{$column}}" class="has-many-{{$column}}">
 
     <div class="has-many-{{$column}}-forms">
@@ -53,4 +53,6 @@
         </div>
     </div>
 
+</div>
+</div>
 </div>

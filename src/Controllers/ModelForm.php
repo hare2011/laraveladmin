@@ -33,4 +33,8 @@ trait ModelForm
     {
         return $this->form()->store();
     }
+
+    public function modelSingStore(){
+        return $this->form()->modelSingStore();
+    }
 }

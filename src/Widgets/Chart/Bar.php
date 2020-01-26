@@ -52,7 +52,9 @@ class Bar extends Chart
     {
         foreach ($data['datasets'] as &$item) {
             if (empty($item['fillColor'])) {
-                $item['fillColor'] = array_shift($this->defaultColors);
+                $index = rand(0,13);
+                $item['fillColor'] = $this->defaultColors[$index];
+                unset($this->defaultColors[$index]);
             }
         }
 
