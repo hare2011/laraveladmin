@@ -2,6 +2,7 @@
 
 namespace Runhare\Admin\Commands;
 
+use function GuzzleHttp\Psr7\parse_query;
 use Illuminate\Console\GeneratorCommand;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputOption;
@@ -21,7 +22,7 @@ class ModelCommand extends GeneratorCommand
      *
      * @var string
      */
-    protected $description = 'Create a new Eloquent model class';
+    protected $description = '创建新 Eloquent model 类';
 
     /**
      * The type of class being generated.
@@ -102,12 +103,11 @@ class ModelCommand extends GeneratorCommand
     protected function buildClass($name)
     {
         $stub = $this->files->get($this->getStub());
-
         $stub = $this->replaceNamespace($stub, $name)->replaceClass($stub, $name);
-        $connect = $this->ask('what is the database connection');
-        $table = $this->ask('what the table name');
-        $softDelete = $this->ask('the table is soft delete');
-        $stub = str_replace(['dummyconnect','dummytable','dummybool'],[$connect,$table,$softDelete],$stub);
+        $class = $this->qualifyClass($this->argument('name'));
+        $modelName = class_basename($class);
+        $table = Str::snake($modelName);
+        $stub = str_replace(['DummyClass','DummyTable'],[$modelName,$table],$stub);
         return $stub; 
     }
 
@@ -120,6 +120,7 @@ class ModelCommand extends GeneratorCommand
      */
     protected function getDefaultNamespace($rootNamespace)
     {
+
         return $rootNamespace;
     }
 
