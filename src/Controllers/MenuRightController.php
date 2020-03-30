@@ -31,8 +31,6 @@ class MenuRightController extends Controller
 
             $content->row(function (Row $row) {
                 $row->column(12, $this->treeView()->render());
-
-
             });
         });
     }
