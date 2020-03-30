@@ -404,9 +404,6 @@ class Form
      */
     public function modelSingShow()
     {
-
-        //$this->model = $this->model->with($relations)->findOrFail($id);
-        //$data = $this->model->toArray();
         $model = $this->model;
         $this->builder()->getTools()->disableListButton();
         $this->builder->fields()->each(function (Field $field) use ($model) {

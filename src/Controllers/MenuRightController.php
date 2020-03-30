@@ -25,7 +25,6 @@ class MenuRightController extends Controller
      */
     public function index()
     {
-        Grid::saveCurrentUrl();
         return Admin::content(function (Content $content) {
             $content->header('菜单权限');
             $content->description(trans('admin::lang.list'));

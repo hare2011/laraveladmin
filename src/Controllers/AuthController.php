@@ -25,8 +25,11 @@ class AuthController extends Controller
         if (!Auth::guard('admin')->guest()) {
             return redirect(config('admin.prefix'));
         }
-
-        return view('admin::login');
+        $path ='admin.login.'.config('admin.loginview');
+        if($path == 'admin.login.'){
+            $path = 'admin.login';
+        }
+        return view($path);
     }
 
     /**
