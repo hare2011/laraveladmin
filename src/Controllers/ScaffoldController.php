@@ -30,7 +30,7 @@ class ScaffoldController extends Controller
 
             $action = URL::current();
 
-            $content->row(view('admin::helpers.scaffold', compact('dbTypes', 'action')));
+            $content->row(view('helpers.scaffold', compact('dbTypes', 'action')));
         });
     }
 

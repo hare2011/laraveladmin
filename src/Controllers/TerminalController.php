@@ -25,7 +25,7 @@ class TerminalController extends Controller
         return Admin::content(function (Content $content) {
             $content->header('Artisan terminal');
 
-            $content->row(view('admin::helpers.artisan', ['commands' => $this->organizedCommands()]));
+            $content->row(view('helpers.artisan', ['commands' => $this->organizedCommands()]));
         });
     }
 
@@ -49,7 +49,7 @@ class TerminalController extends Controller
         return Admin::content(function (Content $content) {
             $content->header('Database terminal');
 
-            $content->row(view('admin::helpers.database', ['connections' => $this->connections()]));
+            $content->row(view('helpers.database', ['connections' => $this->connections()]));
         });
     }
 

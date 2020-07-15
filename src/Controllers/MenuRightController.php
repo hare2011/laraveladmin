@@ -27,7 +27,7 @@ class MenuRightController extends Controller
     {
         return Admin::content(function (Content $content) {
             $content->header('菜单权限');
-            $content->description(trans('admin::lang.list'));
+            $content->description(trans('lang.list'));
 
             $content->row(function (Row $row) {
                 $row->column(12, $this->treeView()->render());
@@ -82,8 +82,8 @@ class MenuRightController extends Controller
     public function edit($id)
     {
         return Admin::content(function (Content $content) use ($id) {
-            $content->header(trans('admin::lang.menu'));
-            $content->description(trans('admin::lang.edit'));
+            $content->header(trans('lang.menu'));
+            $content->description(trans('lang.edit'));
 
             $content->row($this->form()->edit($id));
         });
@@ -99,14 +99,14 @@ class MenuRightController extends Controller
         return Menu::form(function (Form $form) {
            // $form->display('id', 'ID');
 
-            //$form->select('parent_id', trans('admin::lang.parent_id'))->options(Menu::selectOptions());
-            //$form->text('title', trans('admin::lang.title'))->rules('required');
-            //$form->icon('icon', trans('admin::lang.icon'))->default('fa-bars')->rules('required')->help($this->iconHelp());
-            $form->text('uri', trans('admin::lang.uri'));
-            $form->multipleSelect('roles', trans('admin::lang.roles'))->options(Role::all()->pluck('name', 'id'));
+            //$form->select('parent_id', trans('lang.parent_id'))->options(Menu::selectOptions());
+            //$form->text('title', trans('lang.title'))->rules('required');
+            //$form->icon('icon', trans('lang.icon'))->default('fa-bars')->rules('required')->help($this->iconHelp());
+            $form->text('uri', trans('lang.uri'));
+            $form->multipleSelect('roles', trans('lang.roles'))->options(Role::all()->pluck('name', 'id'));
 
-            //$form->display('created_at', trans('admin::lang.created_at'));
-            //$form->display('updated_at', trans('admin::lang.updated_at'));
+            //$form->display('created_at', trans('lang.created_at'));
+            //$form->display('updated_at', trans('lang.updated_at'));
         });
     }
 

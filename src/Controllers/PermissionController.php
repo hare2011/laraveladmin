@@ -21,8 +21,8 @@ class PermissionController extends Controller
     public function index()
     {
         return Admin::content(function (Content $content) {
-            $content->header(trans('admin::lang.permissions'));
-            $content->description(trans('admin::lang.list'));
+            $content->header(trans('lang.permissions'));
+            $content->description(trans('lang.list'));
             $content->body($this->grid()->render());
         });
     }
@@ -37,8 +37,8 @@ class PermissionController extends Controller
     public function edit($id)
     {
         return Admin::content(function (Content $content) use ($id) {
-            $content->header(trans('admin::lang.permissions'));
-            $content->description(trans('admin::lang.edit'));
+            $content->header(trans('lang.permissions'));
+            $content->description(trans('lang.edit'));
             $content->body($this->form()->edit($id));
         });
     }
@@ -51,8 +51,8 @@ class PermissionController extends Controller
     public function create()
     {
         return Admin::content(function (Content $content) {
-            $content->header(trans('admin::lang.permissions'));
-            $content->description(trans('admin::lang.create'));
+            $content->header(trans('lang.permissions'));
+            $content->description(trans('lang.create'));
             $content->body($this->form());
         });
     }
@@ -66,11 +66,11 @@ class PermissionController extends Controller
     {
         return Admin::grid(Permission::class, function (Grid $grid) {
             $grid->id('ID')->sortable();
-            $grid->slug(trans('admin::lang.slug'));
-            $grid->name(trans('admin::lang.name'));
+            $grid->slug(trans('lang.slug'));
+            $grid->name(trans('lang.name'));
 
-            $grid->created_at(trans('admin::lang.created_at'));
-            $grid->updated_at(trans('admin::lang.updated_at'));
+            $grid->created_at(trans('lang.created_at'));
+            $grid->updated_at(trans('lang.updated_at'));
 
             $grid->tools(function (Grid\Tools $tools) {
                 $tools->batch(function (Grid\Tools\BatchActions $actions) {
@@ -90,11 +90,11 @@ class PermissionController extends Controller
         return Admin::form(Permission::class, function (Form $form) {
             $form->display('id', 'ID');
 
-            $form->text('slug', trans('admin::lang.slug'))->rules('required');
-            $form->text('name', trans('admin::lang.name'))->rules('required');
+            $form->text('slug', trans('lang.slug'))->rules('required');
+            $form->text('name', trans('lang.name'))->rules('required');
 
-            $form->display('created_at', trans('admin::lang.created_at'));
-            $form->display('updated_at', trans('admin::lang.updated_at'));
+            $form->display('created_at', trans('lang.created_at'));
+            $form->display('updated_at', trans('lang.updated_at'));
         });
     }
 }

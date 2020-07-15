@@ -23,8 +23,8 @@ class UserController extends Controller
     public function index()
     {
         return Admin::content(function (Content $content) {
-            $content->header(trans('admin::lang.administrator'));
-            $content->description(trans('admin::lang.list'));
+            $content->header(trans('lang.administrator'));
+            $content->description(trans('lang.list'));
             $content->body($this->grid()->render());
         });
     }
@@ -39,8 +39,8 @@ class UserController extends Controller
     public function edit($id)
     {
         return Admin::content(function (Content $content) use ($id) {
-            $content->header(trans('admin::lang.administrator'));
-            $content->description(trans('admin::lang.edit'));
+            $content->header(trans('lang.administrator'));
+            $content->description(trans('lang.edit'));
             $content->body($this->form()->edit($id));
         });
     }
@@ -53,8 +53,8 @@ class UserController extends Controller
     public function create()
     {
         return Admin::content(function (Content $content) {
-            $content->header(trans('admin::lang.administrator'));
-            $content->description(trans('admin::lang.create'));
+            $content->header(trans('lang.administrator'));
+            $content->description(trans('lang.create'));
             $content->body($this->form());
         });
     }
@@ -68,11 +68,11 @@ class UserController extends Controller
     {
         return Administrator::grid(function (Grid $grid) {
             $grid->id('ID')->sortable();
-            $grid->username(trans('admin::lang.username'));
-            $grid->name(trans('admin::lang.name'));
-            $grid->roles(trans('admin::lang.roles'))->pluck('name')->label();
-            $grid->created_at(trans('admin::lang.created_at'));
-            $grid->updated_at(trans('admin::lang.updated_at'));
+            $grid->username(trans('lang.username'));
+            $grid->name(trans('lang.name'));
+            $grid->roles(trans('lang.roles'))->pluck('name')->label();
+            $grid->created_at(trans('lang.created_at'));
+            $grid->updated_at(trans('lang.updated_at'));
 
             $grid->actions(function (Grid\Displayers\Actions $actions) {
                 if ($actions->getKey() == 1) {
@@ -100,22 +100,22 @@ class UserController extends Controller
         return Administrator::form(function (Form $form) {
             $form->display('id', 'ID');
 
-            $form->text('username', trans('admin::lang.username'))->rules('required');
-            $form->text('name', trans('admin::lang.name'))->rules('required');
-            $form->image('avatar', trans('admin::lang.avatar'));
-            $form->password('password', trans('admin::lang.password'))->rules('required|confirmed');
-            $form->password('password_confirmation', trans('admin::lang.password_confirmation'))->rules('required')
+            $form->text('username', trans('lang.username'))->rules('required');
+            $form->text('name', trans('lang.name'))->rules('required');
+            $form->image('avatar', trans('lang.avatar'));
+            $form->password('password', trans('lang.password'))->rules('required|confirmed');
+            $form->password('password_confirmation', trans('lang.password_confirmation'))->rules('required')
                 ->default(function ($form) {
                     return $form->model()->password;
                 });
 
             $form->ignore(['password_confirmation']);
 
-            $form->multipleSelect('roles', trans('admin::lang.roles'))->options(Role::all()->pluck('name', 'id'));
-            $form->multipleSelect('permissions', trans('admin::lang.permissions'))->options(Permission::all()->pluck('name', 'id'));
+            $form->multipleSelect('roles', trans('lang.roles'))->options(Role::all()->pluck('name', 'id'));
+            $form->multipleSelect('permissions', trans('lang.permissions'))->options(Permission::all()->pluck('name', 'id'));
 
-            $form->display('created_at', trans('admin::lang.created_at'));
-            $form->display('updated_at', trans('admin::lang.updated_at'));
+            $form->display('created_at', trans('lang.created_at'));
+            $form->display('updated_at', trans('lang.updated_at'));
 
             $form->saving(function (Form $form) {
                 if ($form->password && $form->model()->password != $form->password) {
