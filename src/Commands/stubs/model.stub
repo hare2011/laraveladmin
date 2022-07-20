@@ -3,12 +3,15 @@
 namespace DummyNamespace;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use SoftDeletes;
+
 
 class DummyClass extends Model {
 
     protected $connection = 'mysql';
+    
     protected $table = 'DummyTable';
-    public $timestamps = true;
-    protected $guarded = [];
-    public  $softDelete = 'status';
+
+    protected $dates = ['deleted_at'];
 }
