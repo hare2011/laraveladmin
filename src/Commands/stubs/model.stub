@@ -4,11 +4,13 @@ namespace DummyNamespace;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use SoftDeletes;
+
 
 
 class DummyClass extends Model {
 
+    use SoftDeletes;
+    
     protected $connection = 'mysql';
     
     protected $table = 'DummyTable';
