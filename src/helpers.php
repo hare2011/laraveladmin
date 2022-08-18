@@ -117,7 +117,7 @@ if (!function_exists("sm4_decrypt")) {
      * @param type $value
      * @return type
      */
-    function sm4_encrypt($key, $value) {
+    function sm4_decrypt($key, $value) {
         
         if (!in_array('sm4-cbc', openssl_get_cipher_methods())) {
             throw new Exception('不支持 sm4 解密');
