@@ -50,11 +50,10 @@ class Bar extends Chart
 
     protected function fillColor($data)
     {
+    
         foreach ($data['datasets'] as &$item) {
             if (empty($item['fillColor'])) {
-                $index = rand(0,13);
-                $item['fillColor'] = $this->defaultColors[$index];
-                unset($this->defaultColors[$index]);
+            	$item['fillColor'] = array_shift($this->defaultColors);
             }
         }
 
