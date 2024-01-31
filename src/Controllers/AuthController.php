@@ -2,6 +2,9 @@
 
 namespace Runhare\Admin\Controllers;
 
+use Illuminate\Cache\RateLimiter;
+use Illuminate\Foundation\Auth\ThrottlesLogins;
+use Illuminate\Support\Str;
 use Runhare\Admin\Auth\Database\Administrator;
 use Runhare\Admin\Facades\Admin;
 use Runhare\Admin\Form;
@@ -15,6 +18,13 @@ use Illuminate\Support\Facades\Validator;
 
 class AuthController extends Controller
 {
+    use ThrottlesLogins;
+
+    public  $maxAttempts = 5;
+
+    public $decayMinutes = 10;
+
+
     /**
      * Login page.
      *
@@ -39,6 +49,13 @@ class AuthController extends Controller
      */
     public function postLogin(Request $request)
     {
+
+        if($this->hasTooManyLoginAttempts($request)){
+            $this->fireLockoutEvent($request);
+
+            return $this->sendLockoutResponse($request);
+        }
+
         $credentials = $request->only(['username', 'password']);
 
         $validator = Validator::make($credentials, [
@@ -55,7 +72,19 @@ class AuthController extends Controller
             return redirect()->intended(config('admin.prefix'));
         }
 
+        $this->incrementLoginAttempts($request);
+
         return Redirect::back()->withInput()->withErrors(['username' => $this->getFailedLoginMessage()]);
+    }
+
+    /**
+     * Get the login username to be used by the controller.
+     *
+     * @return string
+     */
+    public function username()
+    {
+        return 'username';
     }
 
     /**
@@ -136,7 +165,7 @@ class AuthController extends Controller
     protected function getFailedLoginMessage()
     {
         return Lang::has('auth.failed')
-            ? trans('admin::auth.failed')
+            ? trans('auth.failed')
             : 'These credentials do not match our records.';
     }
 }
